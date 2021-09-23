@@ -1,0 +1,100 @@
+#!/bin/sh
+# Installation script
+# Usage: setup.sh
+
+[ "$#" -eq 0 ] || { printf 'Usage: setup.sh\n'; exit 1; }
+
+[ "$(whoami)" = 'root' ] || { printf 'Root permission is needed!\n'; exit 1; }
+
+cd "${0%/*}" || exit 1
+
+username="$(pwd | sed --posix -nE 's/^\/home\/([^/]+).+$/\1/p')"
+
+while [ "${step=1}" -le 6 ]; do clear
+
+	# Check internet connection
+	while ! ping -c 2 archlinux.org >/dev/null 2>&1; do
+		printf 'No internet connection!\n'
+		sleep 3
+	done
+
+	case "$step" in
+		1) # Install 'reflector' package
+			pacman -S --needed reflector || \
+				{ printf "Failed to install 'reflector' package!\n"; exit 1; }
+			;;
+		2) # Get the latest pacman mirrorlist
+			printf 'Update pacman mirrorlist? [Y/n]: '; read -r ans
+
+			if [ "$ans" = 'Y' ] || [ -z "$ans" ]; then
+				cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+
+				reflector --verbose --protocol https --latest 30 \
+					--fastest 5 --save /etc/pacman.d/mirrorlist
+
+				less /etc/pacman.d/mirrorlist
+			fi
+			;;
+		3) # Update system
+			pacman -Syu || { printf 'Failed to update system!\n'; exit 1; }
+			;;
+		4) # Install packages
+			sed --posix -nE 's/^[[:space:]]*\*[[:space:]]*([[:alnum:]_-]*)[[:space:]]*$/\1/p' \
+				./packages.txt | pacman -S --needed - || \
+				{ printf 'Failed to install packages!\n.\n'; exit 1; }
+			;;
+		5) # Install AUR helper
+			if ! command -v paru >/dev/null 2>&1; then
+				su --pty --login "$username" -c "
+					git clone https://aur.archlinux.org/paru-bin.git '$(pwd)/paru-bin'
+					( cd '$(pwd)/paru-bin' && makepkg -si )
+					rm -rf ./paru-bin
+				"
+				command -v paru >/dev/null 2>&1 || \
+					{ printf 'Failed to install AUR helper!\n'; exit 1; }
+			else
+				printf 'AUR helper is already installed, skipping ...\n'
+			fi
+			;;
+		6) # Install AUR packages
+			su --pty --login "$username" -c "
+				sed --posix -nE 's/^[[:space:]]*@[[:space:]]*([[:alnum:]_-]*)[[:space:]]*$/\1/p' \
+					'$(pwd)/packages.txt' | paru -S --needed -
+			" || { printf 'Failed to install AUR packages!\n'; exit 1; }
+			;;
+	esac
+
+	step=$((step + 1))
+	./bin/countdown.sh 60
+done; clear
+
+# Configure mkinitcpio and create initial ramdisks
+cp ./boot/mkinitcpio.conf /etc/mkinitcpio.conf
+mkinitcpio -P
+
+# Configure GRUB bootloader
+./boot/grub/grub.cfg.sh
+
+# Configure the virtual console
+printf 'KEYMAP=us1\nFONT=ter-v14n\n' > /etc/vconsole.conf
+
+# Add user to video and audio group
+usermod -a -G audio,video "$username"
+
+# Change user default shell to zsh
+usermod -s /bin/zsh "$username"
+
+# Enable bluetooth service
+systemctl --now enable bluetooth.service
+
+# Enable tlp for power saving
+systemctl --now enable tlp.service
+
+# Enable network manager
+systemctl --now enable NetworkManager.service
+
+# Enable firewall
+ufw enable
+systemctl --now enable ufw.service
+
+# vi: tabstop=4 softtabstop=4 shiftwidth=4
