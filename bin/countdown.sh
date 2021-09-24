@@ -4,7 +4,7 @@
 
 [ "$#" -eq 1 ] || { printf 'Usage: countdown.sh <seconds>\n'; exit 1; }
 
-printf '%s\n' "$1" | grep -E '^[+-]?[[:digit:]]+$' >/dev/null 2>&1 || \
+printf '%s\n' "$1" | grep -qE '^[+-]?[[:digit:]]+$' || \
 	{ printf 'Invalid number!\n'; exit 1; }
 
 [ "$1" -gt 0 ] || exit 0

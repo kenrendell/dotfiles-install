@@ -1,8 +1,8 @@
 #!/bin/sh
 # Installation script
-# Usage: setup.sh
+# Usage: install.sh
 
-[ "$#" -eq 0 ] || { printf 'Usage: setup.sh\n'; exit 1; }
+[ "$#" -eq 0 ] || { printf 'Usage: install.sh\n'; exit 1; }
 
 [ "$(whoami)" = 'root' ] || { printf 'Root permission is needed!\n'; exit 1; }
 
@@ -10,7 +10,7 @@ cd "${0%/*}" || exit 1
 
 username="$(pwd | sed --posix -nE 's/^\/home\/([^/]+).+$/\1/p')"
 
-while [ "${step=1}" -le 6 ]; do clear
+while [ "${step=1}" -le 7 ]; do clear
 
 	# Check internet connection
 	while ! ping -c 2 archlinux.org >/dev/null 2>&1; do
@@ -62,10 +62,13 @@ while [ "${step=1}" -le 6 ]; do clear
 					'$(pwd)/packages.txt' | paru -S --needed -
 			" || { printf 'Failed to install AUR packages!\n'; exit 1; }
 			;;
+		7) # Install dotfiles
+			su --login "$username" -c "$(pwd)/dotfiles-install.sh" ;;
 	esac
 
 	step=$((step + 1))
 	./bin/countdown.sh 60
+
 done; clear
 
 # Configure mkinitcpio and create initial ramdisks
@@ -96,5 +99,3 @@ systemctl --now enable NetworkManager.service
 # Enable firewall
 ufw enable
 systemctl --now enable ufw.service
-
-# vi: tabstop=4 softtabstop=4 shiftwidth=4
