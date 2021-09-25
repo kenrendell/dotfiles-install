@@ -55,7 +55,6 @@
     * bluez-utils
 
 # Audio
-    * alsa-utils
     * pipewire
     * pipewire-pulse
     * pipewire-alsa
