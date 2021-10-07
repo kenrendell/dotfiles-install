@@ -8,7 +8,12 @@
 
 cd "${0%/*}" || exit 1
 
-username="$(pwd | sed --posix -nE 's/^\/home\/([^/]+).+$/\1/p')"
+username="$(pwd | sed -E -n 's/^\/home\/([^/]+).+$/\1/p')"
+
+# Configure pacman
+[ -f '/etc/pacman.conf.bak' ] || \
+	sed -E --in-place='.bak' -e 's/^#(Color)$/\1/' \
+		-e 's/^#(ParallelDownloads[[:space:]]*=).+$/\1 4/' /etc/pacman.conf
 
 while [ "${step=1}" -le 7 ]; do clear
 
@@ -39,7 +44,7 @@ while [ "${step=1}" -le 7 ]; do clear
 			pacman -Syu || { printf 'Failed to update system!\n'; exit 1; }
 			;;
 		4) # Install packages
-			sed --posix -nE 's/^[[:space:]]*\*[[:space:]]*([[:alnum:]_-]*)[[:space:]]*$/\1/p' \
+			sed -E -n 's/^[[:space:]]*\*[[:space:]]*([[:alnum:]_-]*)[[:space:]]*$/\1/p' \
 				./packages.txt | pacman -S --needed - || \
 				{ printf 'Failed to install packages!\n.\n'; exit 1; }
 			;;
@@ -58,7 +63,7 @@ while [ "${step=1}" -le 7 ]; do clear
 			;;
 		6) # Install AUR packages
 			su --pty --login "$username" -c "
-				sed --posix -nE 's/^[[:space:]]*@[[:space:]]*([[:alnum:]_-]*)[[:space:]]*$/\1/p' \
+				sed -E -n 's/^[[:space:]]*@[[:space:]]*([[:alnum:]_-]*)[[:space:]]*$/\1/p' \
 					'$(pwd)/packages.txt' | paru -S --needed -
 			" || { printf 'Failed to install AUR packages!\n'; exit 1; }
 			;;
@@ -84,7 +89,7 @@ printf 'KEYMAP=us1\nFONT=ter-v14n\n' > /etc/vconsole.conf
 # Add user to video and audio group
 usermod -a -G audio,video "$username"
 
-# Change user default shell to zsh
+# Configure shell
 usermod -s /bin/zsh "$username"
 
 # Enable bluetooth service

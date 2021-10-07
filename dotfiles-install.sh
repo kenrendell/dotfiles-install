@@ -16,7 +16,7 @@ dotfiles() { git --git-dir=./.dotfiles --work-tree=./ "$@"; }
 
 dotfiles checkout >/dev/null 2>&1 || {
 	dotfiles checkout 2>&1 | \
-		sed --posix -nE 's/^[[:space:]]+(.+)[[:space:]]*$/"\1"/p' | xargs rm -rf
+		sed -E -n 's/^[[:space:]]+(.+)[[:space:]]*$/"\1"/p' | xargs rm -rf
 
 	dotfiles checkout
 }
