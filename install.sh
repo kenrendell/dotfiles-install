@@ -31,13 +31,21 @@ while [ "${step=1}" -le 7 ]; do clear
 		2) # Get the latest pacman mirrorlist
 			printf 'Update pacman mirrorlist? [Y/n]: '; read -r ans
 
-			if [ "$ans" = 'Y' ] || [ -z "$ans" ]; then
+			if [ "$ans" = 'Y' ] || [ "$ans" = 'y' ] || [ -z "$ans" ]; then
 				cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 
 				reflector --verbose --protocol https --latest 30 \
 					--fastest 5 --save /etc/pacman.d/mirrorlist
 
-				less /etc/pacman.d/mirrorlist
+				# Enter `:n' and `:p' in `less' to search
+				# for next and previous file, respectively.
+				less /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+
+				printf "Delete '/etc/pacman.d/mirrorlist.bak'? [y/(r)ecover/N]: "
+				read -r ans; case "$ans" in
+					Y|y) rm -rf /etc/pacman.d/mirrorlist.bak ;;
+					R|r) mv /etc/pacman.d/mirrorlist.bak /etc/pacman.d/mirrorlist ;;
+				esac
 			fi
 			;;
 		3) # Update system
