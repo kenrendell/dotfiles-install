@@ -101,6 +101,7 @@
 
 # Lua
 	* lua
+    * luarocks
 
 # Python
     * python
