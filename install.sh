@@ -7,35 +7,31 @@
 [ "$(whoami)" = 'root' ] || { printf 'Root permission is needed!\n'; exit 1; }
 
 cd "${0%/*}" || exit 1
-
 username="$(pwd | sed -E -n 's/^\/home\/([^/]+).+$/\1/p')"
 
-# Configure pacman
-[ -f '/etc/pacman.conf.bak' ] || \
-	sed -E --in-place='.bak' -e 's/^#(Color)$/\1/' \
-		-e 's/^#(ParallelDownloads[[:space:]]*=).+$/\1 4/' /etc/pacman.conf
-
-while [ "${step=1}" -le 7 ]; do clear
-
+while [ "${step=1}" -le 8 ]; do clear
 	# Check internet connection
-	while ! ping -c 2 archlinux.org >/dev/null 2>&1; do
+	while ! ping -c 1 archlinux.org >/dev/null 2>&1; do
 		printf 'No internet connection!\n'
 		sleep 3
 	done
 
 	case "$step" in
-		1) # Install 'reflector' package
+		1) # Configure Pacman
+			sed -E -e 's/^#?(ParallelDownloads[[:space:]]*=).+$/\1 5/' \
+				-e 's/^#?(Color)$/\1/' /etc/pacman.conf
+			;;
+		2) # Install 'reflector' package
 			pacman -S --needed reflector || \
 				{ printf "Failed to install 'reflector' package!\n"; exit 1; }
 			;;
-		2) # Get the latest pacman mirrorlist
+		3) # Get the latest pacman mirrorlist
 			printf 'Update pacman mirrorlist? [Y/n]: '; read -r ans
-
 			if [ "$ans" = 'Y' ] || [ "$ans" = 'y' ] || [ -z "$ans" ]; then
 				cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 
-				reflector --verbose --protocol https --latest 30 \
-					--fastest 5 --save /etc/pacman.d/mirrorlist
+				reflector --protocol https --latest 5 \
+					--sort age --save /etc/pacman.d/mirrorlist
 
 				# Enter `:n' and `:p' in `less' to search
 				# for next and previous file, respectively.
@@ -48,15 +44,15 @@ while [ "${step=1}" -le 7 ]; do clear
 				esac
 			fi
 			;;
-		3) # Update system
+		4) # Update system
 			pacman -Syu || { printf 'Failed to update system!\n'; exit 1; }
 			;;
-		4) # Install packages
+		5) # Install packages
 			sed -E -n 's/^[[:space:]]*\*[[:space:]]*([[:alnum:]_-]*)[[:space:]]*$/\1/p' \
 				./packages.txt | pacman -S --needed - || \
 				{ printf 'Failed to install packages!\n.\n'; exit 1; }
 			;;
-		5) # Install AUR helper
+		6) # Install AUR helper
 			if ! command -v paru >/dev/null 2>&1; then
 				su --pty --login "$username" -c "
 					git clone https://aur.archlinux.org/paru-bin.git '$(pwd)/paru-bin'
@@ -69,30 +65,32 @@ while [ "${step=1}" -le 7 ]; do clear
 				printf 'AUR helper is already installed, skipping ...\n'
 			fi
 			;;
-		6) # Install AUR packages
+		7) # Install AUR packages
 			su --pty --login "$username" -c "
 				sed -E -n 's/^[[:space:]]*@[[:space:]]*([[:alnum:]_-]*)[[:space:]]*$/\1/p' \
 					'$(pwd)/packages.txt' | paru -S --needed -
 			" || { printf 'Failed to install AUR packages!\n'; exit 1; }
 			;;
-		7) # Install dotfiles
-			su --login "$username" -c "$(pwd)/dotfiles-install.sh" ;;
+		8) # Install dotfiles
+			printf 'Install dotfiles? [Y/n]: '; read -r ans
+			{ [ "$ans" = 'Y' ] || [ "$ans" = 'y' ] || [ -z "$ans" ]; } && \
+				su --login "$username" -c "$(pwd)/dotfiles-install.sh"
+			;;
 	esac
 
+	printf "Press [Enter] to continue (enter 'q' to quit): "
+	read -r input; [ "$input" = 'q' ] && exit 1
 	step=$((step + 1))
-	./bin/countdown.sh 60
-
 done; clear
 
-# Configure mkinitcpio and create initial ramdisks
-cp ./boot/mkinitcpio.conf /etc/mkinitcpio.conf
+# Copy files to their respective directories
+cp -r ./etc/* /etc || { printf "Failed to copy etc files to '/etc' directory!\n" 1>&2; exit 1; }
+
+# Process all presets in /etc/mkinitcpio.d
 mkinitcpio -P
 
-# Configure GRUB bootloader
-./boot/grub/grub.cfg.sh
-
-# Configure the virtual console
-printf 'KEYMAP=us1\nFONT=ter-v14n\n' > /etc/vconsole.conf
+# Configure the bootloader
+./boot/grub-configure.sh
 
 # Add user to video and audio group
 usermod -a -G audio,video "$username"
@@ -101,14 +99,15 @@ usermod -a -G audio,video "$username"
 usermod -s /bin/zsh "$username"
 
 # Enable bluetooth service
-systemctl --now enable bluetooth.service
+systemctl enable bluetooth.service
 
-# Enable tlp for power saving
-systemctl --now enable tlp.service
+# Enable power services
+systemctl enable tlp.service
+systemctl enable upower.service
 
 # Enable network manager
-systemctl --now enable NetworkManager.service
+systemctl enable NetworkManager.service
 
 # Enable firewall
 ufw enable
-systemctl --now enable ufw.service
+systemctl enable ufw.service

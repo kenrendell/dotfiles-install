@@ -6,17 +6,13 @@
 
 [ "$(whoami)" != 'root' ] || { printf 'Run this command as a normal user!\n'; exit 1; }
 
-cd "$HOME" || { printf 'Please check the HOME environment!\n'; exit 1; }
-
-rm -rf ./.dotfiles
-git clone --bare https://github.com/kenrendell/dotfiles.git ./.dotfiles || \
+rm -rf "$HOME/.dotfiles"
+git clone --bare 'https://github.com/kenrendell/dotfiles.git' "$HOME/.dotfiles" || \
 	{ printf 'Failed to download dotfiles!\n'; exit 1; }
 
-dotfiles() { git --git-dir=./.dotfiles --work-tree=./ "$@"; }
-
+alias dotfiles="git --git-dir='$HOME/.dotfiles' --work-tree='$HOME'"
+dotfiles config status.showUntrackedFiles no
 dotfiles checkout >/dev/null 2>&1 || {
-	dotfiles checkout 2>&1 | \
-		sed -E -n 's/^[[:space:]]+(.+)[[:space:]]*$/"\1"/p' | xargs rm -rf
-
+	dotfiles checkout 2>&1 | sed -E -n "s/^[[:space:]]+(.+)[[:space:]]*\$/'\1'/p" | xargs rm -rf
 	dotfiles checkout
 }

@@ -7,6 +7,8 @@
     * intel-ucode
     * f2fs-tools
     * base-devel
+	* mesa-utils
+	* archlinux-keyring
 
 # Desktop specifications and helpers
     * desktop-file-utils
@@ -31,24 +33,44 @@
     * swaylock
 
 # Wayland utilities
-    @ foot
-    @ fnott-git
+    * foot
+	* foot-terminfo
+    @ fnott
+	* fuzzel
     * waybar
-    * wofi
     * light
-    * udiskie
     * playerctl
 
 # Power management
     * tlp
     * tlp-rdw
 
-# Network
+# Network tools
+	* xh
     * ufw
+	* curl
     * wget
-    * net-tools
-    * inetutils
+	* dog
+	* bind
+	* nmap
+	* socat
+	* whois
+	* iputils
+	* iproute2
+	* inetutils
     * networkmanager
+
+# Security
+	* pass
+	* zbar
+	* pass-otp
+	* cracklib
+	* hashcat
+	* john
+	* gnupg
+	* openssl
+	* openssh
+	* wireguard-tools
 
 # Bluetooth
     * bluez
@@ -62,22 +84,36 @@
     * gst-plugin-pipewire
 
 # Command-line utilities
+	@ yash
     * zsh
+	* abduco
     * neovim
+	* lynx
     * ripgrep
+	* git-delta
+	* tokei
+	* procs
+	* grex
+	* dust
     * fzf
+	* sd
     * bc
+	* jq
     * fd
+	* duf
     * bat
     * exa
     * tree
     * time
+	* units
+	@ inxi
     * upower
+	* sysstat
     * libnotify
     * wl-clipboard
     * inotify-tools
-    @ wev
     * gvfs-mtp
+    @ wev
 
 # ZSH plugins
     * zsh-completions
@@ -85,58 +121,118 @@
 
 # Monitoring tools
     * mtr
-    * htop
+	* ctop
     * kmon
+	* gping
     * iftop
+	* iotop
+	* bottom
+	* bandwhich
 
 # Linter
     * shellcheck
     * python-pylint
-    * vint
     * gopls
     * staticcheck
 
 # Golang
     * go
+	* go-ipfs
 
 # Lua
 	* lua
     * luarocks
+	* lua-lgi
+    * lua-posix
+	* lua-luv
 
 # Python
     * python
     * python-pydbus
     * python-gobject
 
+# Zig
+	* zig
+
+# Rust
+	* rust
+
+# Codecs
+	* flac
+	* opus
+	* opus-tools
+
 # Audio/Video
     * mpv
     * mpd
+	* mpc
+	* motion
     * ffmpeg
     * ncmpcpp
     * wf-recorder
+    * youtube-dl
 
 # Images
     * imv
     * grim
     * slurp
+	* swappy
+	* imagemagick
+
+# Sixel Graphics
+	* notcurses
+	* libdeflate
+	@ libsixel-git
 
 # Documents
     * man-db
     * man-pages
-    * texinfo
+	* tealdeer
+	* pandoc
+	* tectonic
     * zathura
     * zathura-pdf-poppler
+	* newsboat
+	* neomutt
+	* groff
+	* zk
 
-# Email
-    * neomutt
+# Chat Client
+	* weechat
+
+# Colors
+	* hexyl
+	* pastel
+
+# Backup
+	* rsync
+	* restic
+
+# Benchmark
+	@ phoronix-test-suite
+	@ geekbench
+	* hyperfine
+	* sysbench
+	* siege
+	* iperf
+	* fio
 
 # Password manager
+	* rbw
     * bitwarden-cli
+
+# Crytocurrency
+	* bitcoin-cli
+	* bitcoin-daemon
+	* bitcoin-tx
+	* go-ethereum
+	* monero
+	@ cointop
 
 # Appearance
     * arc-gtk-theme
     * papirus-icon-theme
-    @ xcursor-breeze
+    * capitaine-cursors
 
 # Fonts
     * ttf-jetbrains-mono
@@ -148,7 +244,4 @@
 # Others
     * d-feet
     * firefox
-    * youtube-dl
-    @ aic94xx-firmware
-    @ wd719x-firmware
-    @ upd72020x-fw
+	* audacity
