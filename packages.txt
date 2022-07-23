@@ -3,245 +3,255 @@
 # '@' means unofficial (AUR)
 
 # Essentials
-    * linux-lts-headers
-    * intel-ucode
-    * f2fs-tools
-    * base-devel
-	* mesa-utils
-	* archlinux-keyring
+* linux
+* linux-lts
+* linux-headers
+* linux-lts-headers
+* intel-ucode
+* amd-ucode
+* f2fs-tools
+* base-devel
+* mesa-utils
+* archlinux-keyring
+* moreutils
 
 # Desktop specifications and helpers
-    * desktop-file-utils
-    * shared-mime-info
-    * xdg-utils
-    * xdg-user-dirs
-
-# QT
-    * qt5-base
-    * qt6-base
-    * qt5-wayland
-    * qt6-wayland
-
-# GTK
-    * gtk2
-    * gtk3
-    * gtk4
+* desktop-file-utils
+* shared-mime-info
+* xdg-utils
+* xdg-user-dirs
 
 # Wayland compositor
-    * sway
-    * swayidle
-    * swaylock
+* sway
+* swayidle
+* swaylock
+* wayvnc
 
 # Wayland utilities
-    * foot
-	* foot-terminfo
-    @ fnott
-	* fuzzel
-    * waybar
-    * light
-    * playerctl
+* foot
+* foot-terminfo
+@ fnott
+* waybar
+* light
+* playerctl
+* bemenu
+* bemenu-wayland
+* bemenu-ncurses
 
 # Power management
-    * tlp
-    * tlp-rdw
+* tlp
+* tlp-rdw
 
 # Network tools
-	* xh
-    * ufw
-	* curl
-    * wget
-	* dog
-	* bind
-	* nmap
-	* socat
-	* whois
-	* iputils
-	* iproute2
-	* inetutils
-    * networkmanager
+* xh
+* curl
+* wget
+* ldns
+* nmap
+* socat
+* whois
+* nftables
+* iputils
+* iproute2
+* inetutils
+* traceroute
+* termshark
+* wireshark-cli
+* networkmanager
 
 # Security
-	* pass
-	* zbar
-	* pass-otp
-	* cracklib
-	* hashcat
-	* john
-	* gnupg
-	* openssl
-	* openssh
-	* wireguard-tools
+* oath-toolkit
+* age
+* cracklib
+* hashcat
+* john
+* gnupg
+* openssl
+* libressl
+* openssh
+* mosh
+* wireguard-tools
+* apparmor
+* firejail
+
+# Container
+* podman
+* buildah
 
 # Bluetooth
-    * bluez
-    * bluez-utils
+* bluez
+* bluez-utils
 
 # Audio
-    * pipewire
-    * pipewire-pulse
-    * pipewire-alsa
-    * pipewire-jack
-    * gst-plugin-pipewire
+* pipewire
+* pipewire-pulse
+* pipewire-alsa
+* pipewire-jack
+* gst-plugin-pipewire
 
 # Command-line utilities
-	@ yash
-    * zsh
-	* abduco
-    * neovim
-	* lynx
-    * ripgrep
-	* git-delta
-	* tokei
-	* procs
-	* grex
-	* dust
-    * fzf
-	* sd
-    * bc
-	* jq
-    * fd
-	* duf
-    * bat
-    * exa
-    * tree
-    * time
-	* units
-	@ inxi
-    * upower
-	* sysstat
-    * libnotify
-    * wl-clipboard
-    * inotify-tools
-    * gvfs-mtp
-    @ wev
-
-# ZSH plugins
-    * zsh-completions
-    * zsh-syntax-highlighting
+* abduco
+* neovim
+* lynx
+* ripgrep
+* git-delta
+* parallel
+* go-yq
+* tokei
+* procs
+* grex
+* dust
+* fzf
+* sd
+* bc
+* jq
+* fd
+* duf
+* bat
+* exa
+* tree
+* time
+* units
+@ inxi
+* upower
+* sysstat
+* wl-clipboard
+* inotify-tools
+* gvfs-mtp
+@ wev
 
 # Monitoring tools
-    * mtr
-	* ctop
-    * kmon
-	* gping
-    * iftop
-	* iotop
-	* bottom
-	* bandwhich
+* mtr
+* ctop
+* kmon
+* gping
+* iftop
+* iotop
+* bottom
+* bandwhich
 
 # Linter
-    * shellcheck
-    * python-pylint
-    * gopls
-    * staticcheck
+* shellcheck
+* python-pylint
+* gopls
+* staticcheck
 
-# Golang
-    * go
-	* go-ipfs
+# Programming/Scripting Languages
+@ yash
+* zsh
+* python
+* lua
+#* go
+#* rust
+#* zig
 
-# Lua
-	* lua
-    * luarocks
-	* lua-lgi
-    * lua-posix
-	* lua-luv
+# ZSH plugins
+* zsh-completions
+* zsh-syntax-highlighting
 
-# Python
-    * python
-    * python-pydbus
-    * python-gobject
+# Lua Libraries
+* luarocks
+* lua-lgi
+* lua-posix
+* lua-luv
+* lua-lpeg
+* lua-dkjson
 
-# Zig
-	* zig
-
-# Rust
-	* rust
+# Python Libraries
+* python-pydbus
+* python-gobject
 
 # Codecs
-	* flac
-	* opus
-	* opus-tools
+* flac
+* opus
+* opus-tools
 
 # Audio/Video
-    * mpv
-    * mpd
-	* mpc
-	* motion
-    * ffmpeg
-    * ncmpcpp
-    * wf-recorder
-    * youtube-dl
+* mpv
+* mpd
+* mpc
+* motion
+* sox
+* ffmpeg
+* ncmpcpp
+* wf-recorder
+* youtube-dl
 
 # Images
-    * imv
-    * grim
-    * slurp
-	* swappy
-	* imagemagick
-
-# Sixel Graphics
-	* notcurses
-	* libdeflate
-	@ libsixel-git
+* imv
+* grim
+* slurp
+* swappy
+* imagemagick
+* qrencode
+* zbar
 
 # Documents
-    * man-db
-    * man-pages
-	* tealdeer
-	* pandoc
-	* tectonic
-    * zathura
-    * zathura-pdf-poppler
-	* newsboat
-	* neomutt
-	* groff
-	* zk
+* man-db
+* man-pages
+* texinfo
+* tealdeer
+* zathura
+* zathura-pdf-poppler
+* groff
+* zk
+
+# Notify
+* newsboat
+* neomutt
+* s-nail
+* libnotify
 
 # Chat Client
-	* weechat
+* weechat
 
 # Colors
-	* hexyl
-	* pastel
+* hexyl
+* pastel
 
 # Backup
-	* rsync
-	* restic
+* rsync
+* restic
+
+# File Archive
+* tar
+* cpio
+* p7zip
+* zip
+* unzip
+* lhasa
+* unrar
+
+# File Compression
+* xz
+* bzip2
+* gzip
+* lzip
+* zstd
+* lrzip
+* lzop
+* lz4
 
 # Benchmark
-	@ phoronix-test-suite
-	@ geekbench
-	* hyperfine
-	* sysbench
-	* siege
-	* iperf
-	* fio
-
-# Password manager
-	* rbw
-    * bitwarden-cli
+* hyperfine
+* sysbench
+* iperf
+* fio
 
 # Crytocurrency
-	* bitcoin-cli
-	* bitcoin-daemon
-	* bitcoin-tx
-	* go-ethereum
-	* monero
-	@ cointop
+@ cointop
 
 # Appearance
-    * arc-gtk-theme
-    * papirus-icon-theme
-    * capitaine-cursors
+* arc-gtk-theme
+* papirus-icon-theme
+* capitaine-cursors
 
 # Fonts
-    * ttf-jetbrains-mono
-    * ttf-opensans
-    * otf-font-awesome
-    * noto-fonts-emoji
-    * terminus-font
+* ttf-jetbrains-mono
+* ttf-opensans
+* otf-font-awesome
+* noto-fonts-emoji
+* terminus-font
 
 # Others
-    * d-feet
-    * firefox
-	* audacity
+* firefox

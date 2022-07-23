@@ -98,6 +98,13 @@ usermod -a -G audio,video "$username"
 # Configure shell
 usermod -s /bin/zsh "$username"
 
+# Rootless containers
+touch /etc/subuid /etc/subgid
+usermod --add-subuids 100000-165535 --add-subgids 100000-165535 "$username"
+
+# Enable podman service
+systemctl enable podman.service
+
 # Enable bluetooth service
 systemctl enable bluetooth.service
 
@@ -108,6 +115,8 @@ systemctl enable upower.service
 # Enable network manager
 systemctl enable NetworkManager.service
 
+# Enable SSH
+systemctl enable sshd.service
+
 # Enable firewall
-ufw enable
-systemctl enable ufw.service
+systemctl enable nftables.service

@@ -98,7 +98,8 @@ export theme
 # Default linux kernel parameters
 linux_defaults="\\
 root=UUID=\$root_uuid resume=UUID=\$swap_uuid \\
-rw loglevel=3 quiet systemd.show_status=error \\
+rw loglevel=3 quiet \\
+sysctl.vm.swappiness=40 \\
 consoleblank=300 vt.color=0x07 vt.italic=5 vt.underline=6 \\
 vt.default_red=${red} \\
 vt.default_grn=${green} \\
@@ -112,7 +113,7 @@ export linux_defaults
 ### ARCH LINUX (main) ### {{{
 
 menuentry 'Arch Linux, with linux-lts' --class=none {
-	linux \$boot_path/vmlinuz-linux-lts \$linux_defaults i915.modeset=1 i915.fastboot=1 i915.enable_fbc=1
+	linux \$boot_path/vmlinuz-linux-lts \$linux_defaults
 	initrd \$boot_path/intel-ucode.img \$boot_path/initramfs-linux-lts.img
 }
 
