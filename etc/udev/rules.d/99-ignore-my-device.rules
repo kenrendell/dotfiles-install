@@ -1,0 +1,11 @@
+# sudo evtest
+# See 'https://wayland.freedesktop.org/libinput/doc/latest/device-configuration-via-udev.html#ignoring-specific-devices'
+ACTION=="add|change" \
+, KERNEL=="event[0-9]*" \
+, SUBSYSTEM=="input" \
+, ATTRS{id/product}=="0001" \
+, ATTRS{id/vendor}=="0001" \
+, ATTRS{id/version}=="ab41" \
+, ENV{LIBINPUT_IGNORE_DEVICE}="1" \
+, RUN+="/usr/bin/systemctl restart evtest-grab@%k.service"
+#, ENV{SYSTEMD_WANTS}+="evtest-grab@%k.service"

@@ -36,6 +36,10 @@ rm -rf /boot/grub.bak || { printf "Failed to remove '/boot/grub.bak' backup file
 cp -r /boot/grub /boot/grub.bak || { printf "Failed to create '/boot/grub.bak' backup file!\n" 1>&2; exit 1; }
 cp -r ./grub/* /boot/grub || { printf "Failed to copy GRUB files to '/boot/grub'!\n" 1>&2; exit 1; }
 
+# Console settings
+# see 'bootparam' manual
+vt="vt.color=0x07 vt.italic=5 vt.underline=6 vt.default_red=${red} vt.default_grn=${green} vt.default_blu=${blue}"
+
 # GRUB configuration
 cat << EOF > /boot/grub/grub.cfg
 # GRUB Configuration File
@@ -95,17 +99,6 @@ for font in \$boot_path/grub/fonts/Terminus-*-Regular.pf2; do loadfont \$font; d
 set theme=\$boot_path/grub/theme.conf
 export theme
 
-# Default linux kernel parameters
-linux_defaults="\\
-root=UUID=\$root_uuid resume=UUID=\$swap_uuid \\
-rw loglevel=3 quiet \\
-sysctl.vm.swappiness=40 \\
-consoleblank=300 vt.color=0x07 vt.italic=5 vt.underline=6 \\
-vt.default_red=${red} \\
-vt.default_grn=${green} \\
-vt.default_blu=${blue}"
-export linux_defaults
-
 ####################
 ### MENU ENTRIES ###
 ####################
@@ -113,17 +106,17 @@ export linux_defaults
 ### ARCH LINUX (main) ### {{{
 
 menuentry 'Arch Linux, with linux-lts' --class=none {
-	linux \$boot_path/vmlinuz-linux-lts \$linux_defaults
+	linux \$boot_path/vmlinuz-linux-lts root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw loglevel=3 quiet
 	initrd \$boot_path/intel-ucode.img \$boot_path/initramfs-linux-lts.img
 }
 
 menuentry 'Arch Linux, with linux-lts (fallback)' --class=none {
-	linux \$boot_path/vmlinuz-linux-lts \$linux_defaults
+	linux \$boot_path/vmlinuz-linux-lts root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw
 	initrd \$boot_path/intel-ucode.img \$boot_path/initramfs-linux-lts-fallback.img
 }
 
 menuentry 'Arch Linux, with linux-lts (recovery)' --class=none {
-	linux \$boot_path/vmlinuz-linux-lts \$linux_defaults single
+	linux \$boot_path/vmlinuz-linux-lts root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw single
 	initrd \$boot_path/intel-ucode.img \$boot_path/initramfs-linux-lts-fallback.img
 }
 

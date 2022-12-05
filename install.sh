@@ -110,13 +110,16 @@ systemctl enable bluetooth.service
 
 # Enable power services
 systemctl enable tlp.service
-systemctl enable upower.service
 
-# Enable network manager
-systemctl enable NetworkManager.service
+# Enable networking
+systemctl enable iwd.service
+systemctl enable dhcpcd.service
 
 # Enable SSH
 systemctl enable sshd.service
 
 # Enable firewall
 systemctl enable nftables.service
+
+# Enable chat service
+#systemctl enable bitlbee.service

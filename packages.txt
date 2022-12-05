@@ -21,11 +21,14 @@
 * xdg-utils
 * xdg-user-dirs
 
-# Wayland compositor
+# Wayland
+* xorg-xwayland
 * sway
 * swayidle
 * swaylock
 * wayvnc
+* xdg-desktop-portal
+* xdg-desktop-portal-wlr
 
 # Wayland utilities
 * foot
@@ -40,7 +43,10 @@
 
 # Power management
 * tlp
-* tlp-rdw
+* upower
+* acpi
+* tmon
+* lm_sensors
 
 # Network tools
 * xh
@@ -50,14 +56,19 @@
 * nmap
 * socat
 * whois
+* hping
 * nftables
+* conntrack-tools
 * iputils
 * iproute2
 * inetutils
 * traceroute
+* tcpdump
 * termshark
 * wireshark-cli
-* networkmanager
+* dhcpcd
+* dhcping
+* iwd
 
 # Security
 * oath-toolkit
@@ -73,10 +84,13 @@
 * wireguard-tools
 * apparmor
 * firejail
+@ pam-gnupg
 
 # Container
 * podman
 * buildah
+* virtualbox
+* virtualbox-guest-iso
 
 # Bluetooth
 * bluez
@@ -92,7 +106,6 @@
 # Command-line utilities
 * abduco
 * neovim
-* lynx
 * ripgrep
 * git-delta
 * parallel
@@ -103,7 +116,6 @@
 * dust
 * fzf
 * sd
-* bc
 * jq
 * fd
 * duf
@@ -111,13 +123,12 @@
 * exa
 * tree
 * time
-* units
 @ inxi
-* upower
 * sysstat
 * wl-clipboard
 * inotify-tools
 * gvfs-mtp
+* evtest
 @ wev
 
 # Monitoring tools
@@ -153,13 +164,10 @@
 * luarocks
 * lua-lgi
 * lua-posix
+* lua-socket
 * lua-luv
 * lua-lpeg
 * lua-dkjson
-
-# Python Libraries
-* python-pydbus
-* python-gobject
 
 # Codecs
 * flac
@@ -176,6 +184,7 @@
 * ncmpcpp
 * wf-recorder
 * youtube-dl
+* v4l-utils
 
 # Images
 * imv
@@ -192,9 +201,15 @@
 * texinfo
 * tealdeer
 * zathura
-* zathura-pdf-poppler
+* zathura-pdf-mupdf
+* zathura-djvu
 * groff
 * zk
+* libreoffice-fresh
+
+# Language
+* translate-shell
+* dictd
 
 # Notify
 * newsboat
@@ -202,8 +217,14 @@
 * s-nail
 * libnotify
 
-# Chat Client
+# Productivity
+* task
+@ fla.sh
+
+# Chat
 * weechat
+@ bitlbee
+@ bitlbee-facebook
 
 # Colors
 * hexyl
@@ -221,6 +242,7 @@
 * unzip
 * lhasa
 * unrar
+* cdrtools
 
 # File Compression
 * xz
@@ -252,6 +274,20 @@
 * otf-font-awesome
 * noto-fonts-emoji
 * terminus-font
+@ ttf-ms-fonts
 
-# Others
+# Numerical Computation
+* bc
+* rink
+* units
+* geogebra
+* julia
+
+# Electronics
+* ngspice
+* kicad
+* kicad-library
+
+# Internet Browser
+* lynx
 * firefox
