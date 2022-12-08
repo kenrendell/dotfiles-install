@@ -131,5 +131,8 @@ systemctl enable sshd.service
 systemctl enable firewall.service
 systemctl enable update-nft-bogons.timer
 
+# Scheduler
+systemctl enable atd.service
+
 # Enable chat service
 #systemctl enable bitlbee.service

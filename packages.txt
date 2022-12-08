@@ -220,6 +220,7 @@
 * neomutt
 * s-nail
 * libnotify
+* at
 
 # Productivity
 * task
