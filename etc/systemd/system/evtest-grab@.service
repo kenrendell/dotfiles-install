@@ -1,3 +1,6 @@
+[Unit]
+Description=Input Grabber
+
 [Service]
 ExecStart=sh -c '/bin/evtest --grab /dev/input/%i >/dev/null 2>&1'
 Restart=always

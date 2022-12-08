@@ -1,0 +1,9 @@
+[Unit]
+Description=Netfilter Tables
+
+[Service]
+Type=oneshot
+ExecStart=/etc/nftables/bin/firewall.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -19,7 +19,7 @@ while [ "${step=1}" -le 8 ]; do clear
 	case "$step" in
 		1) # Configure Pacman
 			sed -E -e 's/^#?(ParallelDownloads[[:space:]]*=).+$/\1 5/' \
-				-e 's/^#?(Color)$/\1/' /etc/pacman.conf
+				-e 's/^#?(Color)$/\1/' -i /etc/pacman.conf
 			;;
 		2) # Install 'reflector' package
 			pacman -S --needed reflector || \
@@ -83,6 +83,9 @@ while [ "${step=1}" -le 8 ]; do clear
 	step=$((step + 1))
 done; clear
 
+# Stop DHCPCD from overwriting '/etc/resolv.conf'
+printf '\nnohook resolv.conf\n' >> /etc/dhcpcd.conf
+
 # Copy files to their respective directories
 cp -r ./etc/* /etc || { printf "Failed to copy etc files to '/etc' directory!\n" 1>&2; exit 1; }
 
@@ -119,7 +122,8 @@ systemctl enable dhcpcd.service
 systemctl enable sshd.service
 
 # Enable firewall
-systemctl enable nftables.service
+systemctl enable firewall.service
+systemctl enable update-nft-bogons.timer
 
 # Enable chat service
 #systemctl enable bitlbee.service
