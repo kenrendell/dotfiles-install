@@ -9,7 +9,7 @@
 cd "${0%/*}" || exit 1
 username="$(pwd | sed -E -n 's/^\/home\/([^/]+).+$/\1/p')"
 
-while [ "${step=1}" -le 8 ]; do clear
+while [ "${step=1}" -le 9 ]; do clear
 	# Check internet connection
 	while ! ping -c 1 archlinux.org >/dev/null 2>&1; do
 		printf 'No internet connection!\n'
@@ -75,6 +75,12 @@ while [ "${step=1}" -le 8 ]; do clear
 			printf 'Install dotfiles? [Y/n]: '; read -r ans
 			{ [ "$ans" = 'Y' ] || [ "$ans" = 'y' ] || [ -z "$ans" ]; } && \
 				su --login "$username" -c "$(pwd)/dotfiles-install.sh"
+			;;
+		9) # Setup firewall
+			printf 'Setup firewall? [Y/n]: '; read -r ans
+			{ [ "$ans" = 'Y' ] || [ "$ans" = 'y' ] || [ -z "$ans" ]; } && rm -rf ./nftables-conf && \
+				git clone https://github.com/kenrendell/nftables-conf.git ./nftables-conf && \
+				./nftables-conf/install.sh
 			;;
 	esac
 
