@@ -48,6 +48,10 @@
 * tmon
 * lm_sensors
 
+# Server
+#* ddclient
+#* unbound
+
 # Network tools
 * xh
 * curl
