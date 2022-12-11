@@ -296,3 +296,11 @@
 # Internet Browser
 * lynx
 * firefox
+
+# Musical Instrument
+#* guitarix
+#@ tuxguitar
+#@ bashtuner
+#@ tuneit
+#@ lingot
+#@ nootka
