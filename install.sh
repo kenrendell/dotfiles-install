@@ -101,8 +101,8 @@ mkinitcpio -P
 # Configure the bootloader
 ./boot/grub-configure.sh
 
-# Add user to video and audio group
-usermod -a -G audio,video "$username"
+# Add user to some groups
+usermod -a -G audio,video,uucp,wheel "$username"
 
 # Configure shell
 usermod -s /bin/zsh "$username"
