@@ -108,6 +108,7 @@
 * gst-plugin-pipewire
 
 # Command-line utilities
+* picocom
 * abduco
 * neovim
 * ripgrep
@@ -290,8 +291,11 @@
 
 # Electronics
 * ngspice
-* kicad
-* kicad-library
+#* kicad
+#* kicad-library
+#* arduino-cli
+#* arduino-avr-core
+#@ fritzing
 
 # Internet Browser
 * lynx
