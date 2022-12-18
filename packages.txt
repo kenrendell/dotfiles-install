@@ -310,5 +310,6 @@
 #@ lingot
 #@ nootka
 
-# Audio Editing
+# Video/Audio Editing
 #* audacity
+#* shotcut
