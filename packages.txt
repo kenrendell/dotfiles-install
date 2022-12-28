@@ -149,20 +149,39 @@
 * bottom
 * bandwhich
 
-# Linter
+# Shell
+@ yash
+* zsh
 * shellcheck
-* python-pylint
+
+# Rust
+#* rust
+
+# Zig
+#* zig
+
+# Python
+* python
+* pyright
+
+# Lua
+* lua
+* luajit
+* lua-language-server
+
+# Go
+* go
 * gopls
 * staticcheck
 
-# Programming/Scripting Languages
-@ yash
-* zsh
-* python
-* lua
-#* go
-#* rust
-#* zig
+# C/C++
+* clang
+* ccls
+
+# Arduino
+* arduino-cli
+* arduino-avr-core
+@ arduino-language-server-git
 
 # ZSH plugins
 * zsh-completions
@@ -233,7 +252,6 @@
 # Chat
 * weechat
 @ bitlbee
-@ bitlbee-facebook
 
 # Colors
 * hexyl
@@ -287,17 +305,15 @@
 
 # Numerical Computation
 * bc
-* rink
-* units
-* geogebra
-* julia
+#* rink
+#* units
+#* geogebra
+#* julia
 
 # Electronics
 * ngspice
 #* kicad
 #* kicad-library
-#* arduino-cli
-#* arduino-avr-core
 #@ fritzing
 
 # Internet Browser
