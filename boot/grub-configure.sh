@@ -29,16 +29,19 @@ swap_uuid="$(lsblk -o FSTYPE,UUID | \
 red="$(cut -c 1-2 ./colors.txt | xargs -I = printf ',%d' 0x= | cut -d , -f 2-)"
 green="$(cut -c 3-4 ./colors.txt | xargs -I = printf ',%d' 0x= | cut -d , -f 2-)"
 blue="$(cut -c 5-6 ./colors.txt | xargs -I = printf ',%d' 0x= | cut -d , -f 2-)"
-for color in $(cat ./colors.txt | xargs); do eval "color${i:=0}='#${color}'"; i=$((i + 1)); done
+i=0; while read -r color; do eval "color${i}='#${color}'"; i=$((i + 1)); done < ./colors.txt
 
 # Create a backup and copy files to their respective directories
 rm -rf /boot/grub.bak || { printf "Failed to remove '/boot/grub.bak' backup file!\n" 1>&2; exit 1; }
 cp -r /boot/grub /boot/grub.bak || { printf "Failed to create '/boot/grub.bak' backup file!\n" 1>&2; exit 1; }
 cp -r ./grub/* /boot/grub || { printf "Failed to copy GRUB files to '/boot/grub'!\n" 1>&2; exit 1; }
 
-# Console settings
-# see 'bootparam' manual
-vt="vt.color=0x07 vt.italic=5 vt.underline=6 vt.default_red=${red} vt.default_grn=${green} vt.default_blu=${blue}"
+# Extract the boot parameters from boot-parameters.txt file
+unset boot_params
+while read -r param; do
+	[ -n "$boot_params" ] && boot_params="${boot_params}"' \\\n'
+	boot_params="${boot_params}${param}"
+done < ./boot-parameters.txt
 
 # GRUB configuration
 cat << EOF > /boot/grub/grub.cfg
@@ -99,6 +102,18 @@ for font in \$boot_path/grub/fonts/Terminus-*-Regular.pf2; do loadfont \$font; d
 set theme=\$boot_path/grub/theme.conf
 export theme
 
+# Virtual terminal parameters (see 'bootparam')
+vt_defaults="\\
+vt.color=0x07 vt.italic=5 vt.underline=6 \\
+vt.default_red=${red} \\
+vt.default_grn=${green} \\
+vt.default_blu=${blue}"
+export vt_defaults
+
+# Linux default parameters (see 'bootparam')
+defaults="$(printf '\\\n%b' "${boot_params}")"
+export defaults
+
 ####################
 ### MENU ENTRIES ###
 ####################
@@ -106,17 +121,17 @@ export theme
 ### ARCH LINUX (main) ### {{{
 
 menuentry 'Arch Linux, with linux-lts' --class=none {
-	linux \$boot_path/vmlinuz-linux-lts root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw loglevel=3 quiet
+	linux \$boot_path/vmlinuz-linux-lts root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw loglevel=3 quiet \$vt_defaults \$defaults
 	initrd \$boot_path/intel-ucode.img \$boot_path/initramfs-linux-lts.img
 }
 
 menuentry 'Arch Linux, with linux-lts (fallback)' --class=none {
-	linux \$boot_path/vmlinuz-linux-lts root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw
+	linux \$boot_path/vmlinuz-linux-lts root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw \$vt_defaults \$defaults
 	initrd \$boot_path/intel-ucode.img \$boot_path/initramfs-linux-lts-fallback.img
 }
 
 menuentry 'Arch Linux, with linux-lts (recovery)' --class=none {
-	linux \$boot_path/vmlinuz-linux-lts root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw single
+	linux \$boot_path/vmlinuz-linux-lts root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw single \$vt_defaults
 	initrd \$boot_path/intel-ucode.img \$boot_path/initramfs-linux-lts-fallback.img
 }
 
