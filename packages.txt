@@ -128,7 +128,7 @@
 * exa
 * tree
 * time
-@ inxi
+* inxi
 * sysstat
 * wl-clipboard
 * inotify-tools
@@ -152,49 +152,41 @@
 # Shell
 @ yash
 * zsh
-* shellcheck
 
 # Rust
-#* rust
+* rust
+
+# Javascript
+* npm
 
 # Zig
-#* zig
+* zig
 
 # Python
 * python
-* pyright
+* python-pip
 
 # Lua
 * lua
 * luajit
-* lua-language-server
+* luarocks
+* lua-posix
+* lua-socket
+* lua-luv
 
 # Go
 * go
-* gopls
-* staticcheck
 
-# C/C++
-* clang
-* ccls
+# Julia
+* julia
 
 # Arduino
 * arduino-cli
 * arduino-avr-core
-@ arduino-language-server-git
 
 # ZSH plugins
 * zsh-completions
 * zsh-syntax-highlighting
-
-# Lua Libraries
-* luarocks
-* lua-lgi
-* lua-posix
-* lua-socket
-* lua-luv
-* lua-lpeg
-* lua-dkjson
 
 # Codecs
 * flac
@@ -308,7 +300,6 @@
 #* rink
 #* units
 #* geogebra
-#* julia
 
 # Electronics
 * ngspice
