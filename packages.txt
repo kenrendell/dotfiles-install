@@ -26,6 +26,7 @@
 * sway
 * swayidle
 * swaylock
+* swaybg
 * wayvnc
 * xdg-desktop-portal
 * xdg-desktop-portal-wlr
