@@ -226,6 +226,10 @@
 * groff
 * zk
 * libreoffice-fresh
+* zettlr
+* texlive-bin
+* tectonic
+* pandoc
 
 # Language
 * translate-shell
