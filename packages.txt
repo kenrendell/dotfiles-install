@@ -227,7 +227,7 @@
 * groff
 * zk
 * libreoffice-fresh
-* zettlr
+* obsidian
 * texlive-bin
 * tectonic
 * pandoc
