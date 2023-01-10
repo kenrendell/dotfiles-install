@@ -181,10 +181,6 @@
 # Julia
 * julia
 
-# Arduino
-* arduino-cli
-* arduino-avr-core
-
 # ZSH plugins
 * zsh-completions
 * zsh-syntax-highlighting
@@ -310,9 +306,12 @@
 # Electronics
 * ngspice
 * xcircuit
-#* kicad
-#* kicad-library
-#@ fritzing
+* kicad
+* kicad-library
+#* kicad-library-3d
+@ fritzing
+* arduino-cli
+* arduino-avr-core
 
 # Internet Browser
 * lynx
