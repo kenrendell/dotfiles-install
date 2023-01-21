@@ -102,6 +102,7 @@
 * bluez-utils
 
 # Audio
+* wireplumber
 * pipewire
 * pipewire-pulse
 * pipewire-alsa
