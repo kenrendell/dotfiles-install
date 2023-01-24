@@ -249,6 +249,7 @@
 * element-desktop
 @ weechat-matrix-rs-git
 @ bitlbee
+* caprine
 
 # Colors
 * hexyl
