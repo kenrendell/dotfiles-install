@@ -246,6 +246,8 @@
 
 # Chat
 * weechat
+* element-desktop
+@ weechat-matrix-rs-git
 @ bitlbee
 
 # Colors
