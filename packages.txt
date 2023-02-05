@@ -320,6 +320,7 @@
 # Internet Browser
 * lynx
 * firefox
+* torbrowser-launcher
 
 # Musical Instrument
 #* guitarix
