@@ -44,6 +44,8 @@
 
 # Power management
 * tlp
+* powertop
+* thermald
 * upower
 * acpi
 * tmon
@@ -242,7 +244,7 @@
 
 # Productivity
 * task
-@ fla.sh
+@ anki-bin
 
 # Chat
 * weechat
