@@ -120,13 +120,13 @@ export defaults
 
 ### ARCH LINUX (main) ### {{{
 
-menuentry 'Arch Linux, with linux' --class=none {
-	linux \$boot_path/vmlinuz-linux-lts root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw loglevel=3 quiet \$vt_defaults \$defaults
+menuentry 'Arch Linux' --class=none {
+	linux \$boot_path/vmlinuz-linux root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw loglevel=3 quiet \$vt_defaults \$defaults
 	initrd \$boot_path/intel-ucode.img \$boot_path/booster-linux.img
 }
 
-menuentry 'Arch Linux, with linux (fallback)' --class=none {
-	linux \$boot_path/vmlinuz-linux-lts root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw \$vt_defaults
+menuentry 'Arch Linux (fallback)' --class=none {
+	linux \$boot_path/vmlinuz-linux root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw \$vt_defaults
 	initrd \$boot_path/intel-ucode.img \$boot_path/booster-linux.img
 }
 
