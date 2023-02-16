@@ -9,6 +9,7 @@
 * linux-lts-headers
 * intel-ucode
 * amd-ucode
+* efibootmgr
 * f2fs-tools
 * base-devel
 * mesa-utils
