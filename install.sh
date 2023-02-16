@@ -95,8 +95,8 @@ printf '\nnohook resolv.conf\n' >> /etc/dhcpcd.conf
 # Copy files to their respective directories
 cp -r ./etc/* /etc || { printf "Failed to copy etc files to '/etc' directory!\n" 1>&2; exit 1; }
 
-# Process all presets in /etc/mkinitcpio.d
-mkinitcpio -P
+# Generate initramfs
+/usr/lib/booster/regenerate_images
 
 # Configure the bootloader
 ./boot/grub-configure.sh

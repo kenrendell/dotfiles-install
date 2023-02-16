@@ -120,19 +120,24 @@ export defaults
 
 ### ARCH LINUX (main) ### {{{
 
+menuentry 'Arch Linux, with linux' --class=none {
+	linux \$boot_path/vmlinuz-linux-lts root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw loglevel=3 quiet \$vt_defaults \$defaults
+	initrd \$boot_path/intel-ucode.img \$boot_path/booster-linux.img
+}
+
+menuentry 'Arch Linux, with linux (fallback)' --class=none {
+	linux \$boot_path/vmlinuz-linux-lts root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw \$vt_defaults
+	initrd \$boot_path/intel-ucode.img \$boot_path/booster-linux.img
+}
+
 menuentry 'Arch Linux, with linux-lts' --class=none {
 	linux \$boot_path/vmlinuz-linux-lts root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw loglevel=3 quiet \$vt_defaults \$defaults
-	initrd \$boot_path/intel-ucode.img \$boot_path/initramfs-linux-lts.img
+	initrd \$boot_path/intel-ucode.img \$boot_path/booster-linux-lts.img
 }
 
 menuentry 'Arch Linux, with linux-lts (fallback)' --class=none {
-	linux \$boot_path/vmlinuz-linux-lts root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw \$vt_defaults \$defaults
-	initrd \$boot_path/intel-ucode.img \$boot_path/initramfs-linux-lts-fallback.img
-}
-
-menuentry 'Arch Linux, with linux-lts (recovery)' --class=none {
-	linux \$boot_path/vmlinuz-linux-lts root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw single \$vt_defaults
-	initrd \$boot_path/intel-ucode.img \$boot_path/initramfs-linux-lts-fallback.img
+	linux \$boot_path/vmlinuz-linux-lts root=UUID=\$root_uuid resume=UUID=\$swap_uuid rw \$vt_defaults
+	initrd \$boot_path/intel-ucode.img \$boot_path/booster-linux-lts.img
 }
 
 ### }}}

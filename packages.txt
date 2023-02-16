@@ -10,6 +10,8 @@
 * intel-ucode
 * amd-ucode
 * efibootmgr
+* booster
+* busybox
 * f2fs-tools
 * base-devel
 * mesa-utils
