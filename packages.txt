@@ -8,6 +8,7 @@
 * linux-lts
 * linux-lts-headers
 * efibootmgr
+* grub
 * booster
 * busybox
 * base-devel

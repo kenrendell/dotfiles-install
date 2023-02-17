@@ -95,14 +95,18 @@ printf '\nnohook resolv.conf\n' >> /etc/dhcpcd.conf
 # Copy files to their respective directories
 cp -r ./etc/* /etc || { printf "Failed to copy etc files to '/etc' directory!\n" 1>&2; exit 1; }
 
+# Generate the locales
+locale-gen
+
 # Generate initramfs
 /usr/lib/booster/regenerate_images
 
 # Configure the bootloader
 ./boot/grub-configure.sh
+grub-install --target='x86_64-efi' --efi-directory='/boot' --bootloader-id='GRUB'
 
 # Add user to some groups
-usermod -a -G audio,video,uucp,wheel "$username"
+usermod -a -G audio,video,uucp "$username"
 
 # Configure shell
 usermod -s /bin/zsh "$username"

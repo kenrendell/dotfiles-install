@@ -7,5 +7,7 @@ setfont ter-v14n
 # Install package to new root
 pacstrap -K /mnt base linux linux-firmware grub efibootmgr booster neovim sudo git iwd dhcpcd
 
-# Install bootloader (for example, '/dev/sda' not partition '/dev/sdaN')
-grub-install --target=i386-pc /dev/sdX
+# Add super user (uncomment the line with wheel group in sudoers file)
+useradd --create-home --groups=wheel <username>
+passwd <username>
+passwd
