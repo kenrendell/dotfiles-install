@@ -4,19 +4,23 @@
 
 # Essentials
 * linux
-* linux-lts
 * linux-headers
+* linux-lts
 * linux-lts-headers
-* intel-ucode
-* amd-ucode
 * efibootmgr
 * booster
 * busybox
-* f2fs-tools
 * base-devel
 * mesa-utils
 * archlinux-keyring
 * moreutils
+
+# Firmwares
+* linux-firmware
+* alsa-firmware
+* sof-firmware
+* intel-ucode
+* amd-ucode
 
 # Desktop specifications and helpers
 * desktop-file-utils
