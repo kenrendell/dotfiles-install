@@ -14,15 +14,21 @@ cd "${0%/*}" || exit 1
 	{ printf "'%s/colors.txt' file must be 16 lines long with 6 hexadecimal characters (no spaces) in each line!\n" "${0%/*}" 1>&2; exit 1; }
 
 # Find the UUID of boot, root, and swap partition
-uuid_format='[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}'
-boot_uuid="$(lsblk -o MOUNTPOINT,UUID | \
-	sed -E -n "s/^[[:space:]]*\/boot[[:space:]]+(${uuid_format})[[:space:]]*\$/\1/p")"
+# uuid_format='[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}'
+# boot_uuid="$(lsblk -o MOUNTPOINT,UUID | \
+# 	sed -E -n "s/^[[:space:]]*\/boot[[:space:]]+(${uuid_format})[[:space:]]*\$/\1/p")"
+# [ -n "$boot_uuid" ] || { printf 'UUID of boot partition is missing!\n' 1>&2; exit 1; }
+# root_uuid="$(lsblk -o MOUNTPOINT,UUID | \
+# 	sed -E -n "s/^[[:space:]]*\/[[:space:]]+(${uuid_format})[[:space:]]*\$/\1/p")"
+# [ -n "$root_uuid" ] || { printf 'UUID of root partition is missing!\n' 1>&2; exit 1; }
+# swap_uuid="$(lsblk -o FSTYPE,UUID | \
+# 	sed -E -n "s/^[[:space:]]*swap[[:space:]]+(${uuid_format})[[:space:]]*\$/\1/p")"
+# [ -n "$swap_uuid" ] || { printf 'UUID of swap partition is missing!\n' 1>&2; exit 1; }
+boot_uuid="$(findmnt --fstab --output=UUID --noheadings --target=/boot)"
 [ -n "$boot_uuid" ] || { printf 'UUID of boot partition is missing!\n' 1>&2; exit 1; }
-root_uuid="$(lsblk -o MOUNTPOINT,UUID | \
-	sed -E -n "s/^[[:space:]]*\/[[:space:]]+(${uuid_format})[[:space:]]*\$/\1/p")"
+root_uuid="$(findmnt --fstab --output=UUID --noheadings --target=/)"
 [ -n "$root_uuid" ] || { printf 'UUID of root partition is missing!\n' 1>&2; exit 1; }
-swap_uuid="$(lsblk -o FSTYPE,UUID | \
-	sed -E -n "s/^[[:space:]]*swap[[:space:]]+(${uuid_format})[[:space:]]*\$/\1/p")"
+swap_uuid="$(findmnt --fstab --output=UUID --noheadings --types=swap)"
 [ -n "$swap_uuid" ] || { printf 'UUID of swap partition is missing!\n' 1>&2; exit 1; }
 
 # Extract the colors from colors.txt file
