@@ -267,7 +267,20 @@
 
 # Backup
 * rsync
+* unison
+* rclone
 * restic
+
+# Filesystem
+@ autofs
+* nfs-utils
+* sshfs
+* fuse2fs
+* e2fsprogs
+* exfatprogs
+* f2fs-tools
+* nilfs-utils
+* btrfs-progs
 
 # File Archive
 * tar
