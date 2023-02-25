@@ -275,8 +275,10 @@
 @ autofs
 * nfs-utils
 * sshfs
+* curlftpfs
 * fuse2fs
 * e2fsprogs
+* dosfstools
 * exfatprogs
 * f2fs-tools
 * nilfs-utils
