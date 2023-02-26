@@ -106,7 +106,7 @@ locale-gen
 grub-install --target='x86_64-efi' --efi-directory='/boot' --bootloader-id='GRUB'
 
 # Add user to some groups
-usermod -a -G audio,video,uucp "$username"
+usermod -a -G audio,video,uucp,disk "$username"
 
 # Configure shell
 usermod -s /bin/zsh "$username"
