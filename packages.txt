@@ -149,6 +149,8 @@
 @ wev
 
 # Version Control System
+* git
+* github-cli
 * myrepos
 
 # Monitoring tools
