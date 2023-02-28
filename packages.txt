@@ -213,6 +213,7 @@
 * ncmpcpp
 * wf-recorder
 * youtube-dl
+* yt-dlp
 * v4l-utils
 
 # Images
