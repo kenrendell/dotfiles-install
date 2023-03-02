@@ -342,6 +342,14 @@
 * kicad-library
 #* kicad-library-3d
 @ fritzing
+
+# Embedded Systems
+* arm-none-eabi-gcc
+* arm-none-eabi-newlib
+* arm-none-eabi-binutils
+* arm-none-eabi-gdb
+* libopencm3
+* stlink
 * arduino-cli
 * arduino-avr-core
 
