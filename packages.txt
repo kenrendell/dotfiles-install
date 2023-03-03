@@ -343,6 +343,9 @@
 #* kicad-library-3d
 @ fritzing
 
+# Clang Tooling
+* bear
+
 # Embedded Systems
 * arm-none-eabi-gcc
 * arm-none-eabi-newlib
