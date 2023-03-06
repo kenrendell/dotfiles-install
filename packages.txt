@@ -39,6 +39,10 @@
 * xdg-desktop-portal
 * xdg-desktop-portal-wlr
 
+# Wayland GUI
+* qt5-wayland
+* qt6-wayland
+
 # Wayland utilities
 * foot
 * foot-terminfo
@@ -317,7 +321,11 @@
 @ cointop
 
 # Appearance
-* arc-gtk-theme
+* qt5ct
+* qt6ct
+* gnome-themes-extra
+* adwaita-qt5
+* adwaita-qt6
 * papirus-icon-theme
 * capitaine-cursors
 
@@ -334,6 +342,7 @@
 #* rink
 #* units
 #* geogebra
+#* octave
 
 # Electronics
 * ngspice
