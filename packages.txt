@@ -369,6 +369,8 @@
 * lynx
 * firefox
 * torbrowser-launcher
+* tor
+* nyx
 
 # Musical Instrument
 #* guitarix
