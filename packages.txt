@@ -110,6 +110,7 @@
 * buildah
 * virtualbox
 * virtualbox-guest-iso
+* qemu-full
 
 # Bluetooth
 * bluez
@@ -343,14 +344,16 @@
 #* units
 #* geogebra
 #* octave
+#@ octave-signal
+#@ scilab-bin
 
 # Electronics
 * ngspice
 * xcircuit
-* kicad
-* kicad-library
+#* kicad
+#* kicad-library
 #* kicad-library-3d
-@ fritzing
+#@ fritzing
 
 # Clang Tooling
 * bear
