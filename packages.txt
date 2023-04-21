@@ -77,6 +77,7 @@
 * whois
 * hping
 * nftables
+* iptables-nft
 * conntrack-tools
 * iputils
 * iproute2
@@ -88,6 +89,7 @@
 * dhcpcd
 * dhcping
 * iwd
+* dnsmasq
 
 # Security
 * oath-toolkit
@@ -111,6 +113,10 @@
 * virtualbox
 * virtualbox-guest-iso
 * qemu-full
+* libvirt
+* virt-manager
+* virt-viewer
+* dmidecode
 
 # Bluetooth
 * bluez
