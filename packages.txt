@@ -110,8 +110,6 @@
 # Container
 * podman
 * buildah
-* virtualbox
-* virtualbox-guest-iso
 * qemu-full
 * libvirt
 * virt-manager
@@ -351,11 +349,10 @@
 #* geogebra
 #* octave
 #@ octave-signal
-#@ scilab-bin
 
 # Electronics
 * ngspice
-* xcircuit
+@ xcircuit
 #* kicad
 #* kicad-library
 #* kicad-library-3d
