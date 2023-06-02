@@ -46,7 +46,7 @@
 # Wayland utilities
 * foot
 * foot-terminfo
-@ fnott
+* fnott
 * waybar
 * light
 * playerctl
@@ -349,6 +349,7 @@
 #* geogebra
 #* octave
 #@ octave-signal
+#@ octave-image
 
 # Electronics
 * ngspice
