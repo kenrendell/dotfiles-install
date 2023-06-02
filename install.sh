@@ -140,3 +140,7 @@ systemctl enable atd.service
 
 # Enable libvirt service
 systemctl enable libvirtd.service
+
+# Enable music player daemon (MPD)
+su --login "$username" -c 'mkdir -p ~/.local/share/mpd/playlists'
+systemctl --user --machine="${username}"'@.host' enable mpd.service
