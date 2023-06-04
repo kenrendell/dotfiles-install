@@ -346,8 +346,7 @@
 * bc
 #* rink
 #* units
-#* geogebra
-#* octave
+* octave
 #@ octave-signal
 #@ octave-image
 
