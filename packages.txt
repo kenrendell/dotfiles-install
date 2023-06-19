@@ -77,6 +77,7 @@
 * whois
 * hping
 * nftables
+* sshguard
 * iptables-nft
 * conntrack-tools
 * iputils

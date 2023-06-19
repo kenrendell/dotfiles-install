@@ -135,6 +135,9 @@ systemctl enable sshd.service
 systemctl enable firewall.service
 systemctl enable update-nft-bogons.timer
 
+# Enable sshguard
+systemctl enable sshguard.service
+
 # Scheduler
 systemctl enable atd.service
 
