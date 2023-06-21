@@ -244,6 +244,7 @@
 * zathura-pdf-mupdf
 * zathura-djvu
 * zathura-ps
+@ sioyek
 * groff
 * zk
 * libreoffice-fresh
