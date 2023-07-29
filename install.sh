@@ -115,6 +115,9 @@ usermod -s /bin/zsh "$username"
 touch /etc/subuid /etc/subgid
 usermod --add-subuids 100000-165535 --add-subgids 100000-165535 "$username"
 
+# Enable apparmor service
+systemctl enable apparmor.service
+
 # Enable podman service
 systemctl enable podman.service
 
@@ -147,3 +150,6 @@ systemctl enable libvirtd.service
 # Enable music player daemon (MPD)
 su --login "$username" -c 'mkdir -p ~/.local/share/mpd/playlists'
 systemctl --user --machine="${username}"'@.host' enable mpd.service
+
+# Enable Syncthing
+systemctl --user --machine="${username}"'@.host' enable syncthing.service

@@ -1,5 +1,0 @@
-universal: false
-extra_files: nvim,/usr/share/nvim/,fsck,fsck.ext4
-busybox: true
-fsck: true
-vconsole: true

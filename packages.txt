@@ -7,14 +7,24 @@
 * linux-headers
 * linux-lts
 * linux-lts-headers
-* efibootmgr
-* grub
-* booster
+* dracut
 * busybox
 * base-devel
 * mesa-utils
-* archlinux-keyring
 * moreutils
+* archlinux-keyring
+* pacman-contrib
+
+# UEFI
+* efivar
+* efitools
+* efibootmgr
+* sbctl
+* sbsigntools
+* fwupd
+* fwupd-efi
+* tpm2-tools
+* tpm2-tss
 
 # Firmwares
 * linux-firmware
@@ -151,6 +161,7 @@
 * tree
 * time
 * inxi
+* lshw
 * sysstat
 * wl-clipboard
 * inotify-tools
@@ -202,7 +213,7 @@
 * go
 
 # Julia
-* julia
+#* julia
 
 # ZSH plugins
 * zsh-completions
@@ -244,7 +255,7 @@
 * zathura-pdf-mupdf
 * zathura-djvu
 * zathura-ps
-@ sioyek-appimage
+#@ sioyek-appimage
 * groff
 * zk
 * libreoffice-fresh
@@ -270,10 +281,11 @@
 
 # Chat
 * weechat
-* element-desktop
 @ weechat-matrix-rs-git
 @ bitlbee
-* caprine
+#* caprine
+#@ dendrite
+#@ syphon-bin
 
 # Colors
 * hexyl
@@ -284,6 +296,7 @@
 * unison
 * rclone
 * restic
+* syncthing
 
 # Filesystem
 @ autofs
