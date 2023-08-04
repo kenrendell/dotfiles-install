@@ -1,0 +1,17 @@
+# SSH Daemon Configuration
+# For more information, see 'sshd_config' manual.
+
+# Force public key authentication.
+PermitEmptyPasswords no
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+AuthenticationMethods publickey
+
+# Disable root login.
+PermitRootLogin no
+
+# The default is to check both ".ssh/authorized_keys" and ".ssh/authorized_keys2".
+AuthorizedKeysFile .ssh/authorized_keys
+
+# SCP uses SFTP as the default protocol for data transfers.
+Subsystem sftp /usr/lib/ssh/sftp-server
