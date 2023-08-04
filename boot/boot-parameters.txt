@@ -1,4 +1,0 @@
-consoleblank=300
-sysctl.vm.swappiness=15
-sysctl.kernel.unprivileged_userns_clone=1
-sysctl.net.ipv4.ip_unprivileged_port_start=0

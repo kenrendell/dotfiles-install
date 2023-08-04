@@ -26,6 +26,11 @@
 * tpm2-tools
 * tpm2-tss
 
+# Encryption
+* clevis
+* libpwquality
+* luksmeta
+
 # Firmwares
 * linux-firmware
 * alsa-firmware
@@ -87,7 +92,6 @@
 * whois
 * hping
 * nftables
-* sshguard
 * iptables-nft
 * conntrack-tools
 * iputils
@@ -97,7 +101,6 @@
 * tcpdump
 * termshark
 * wireshark-cli
-* dhcpcd
 * dhcping
 * iwd
 * dnsmasq
@@ -154,6 +157,7 @@
 * fzf
 * sd
 * jq
+* jless
 * fd
 * duf
 * bat
@@ -273,7 +277,6 @@
 * neomutt
 * s-nail
 * libnotify
-* at
 
 # Productivity
 * task

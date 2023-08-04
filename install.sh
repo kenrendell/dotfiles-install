@@ -9,7 +9,7 @@
 cd "${0%/*}" || exit 1
 username="$(pwd | sed -E -n 's/^\/home\/([^/]+).+$/\1/p')"
 
-while [ "${step=1}" -le 9 ]; do clear
+while [ "${step=1}" -le 8 ]; do clear
 	# Check internet connection
 	while ! ping -c 1 archlinux.org >/dev/null 2>&1; do
 		printf 'No internet connection!\n'
@@ -76,12 +76,6 @@ while [ "${step=1}" -le 9 ]; do clear
 			{ [ "$ans" = 'Y' ] || [ "$ans" = 'y' ] || [ -z "$ans" ]; } && \
 				su --login "$username" -c "$(pwd)/dotfiles-install.sh"
 			;;
-		9) # Setup firewall
-			printf 'Setup firewall? [Y/n]: '; read -r ans
-			{ [ "$ans" = 'Y' ] || [ "$ans" = 'y' ] || [ -z "$ans" ]; } && rm -rf ./nftables-conf && \
-				git clone https://github.com/kenrendell/nftables-conf.git ./nftables-conf && \
-				./nftables-conf/install.sh
-			;;
 	esac
 
 	printf "Press [Enter] to continue (enter 'q' to quit): "
@@ -89,21 +83,11 @@ while [ "${step=1}" -le 9 ]; do clear
 	step=$((step + 1))
 done; clear
 
-# Stop DHCPCD from overwriting '/etc/resolv.conf'
-printf '\nnohook resolv.conf\n' >> /etc/dhcpcd.conf
-
 # Copy files to their respective directories
 cp -r ./etc/* /etc || { printf "Failed to copy etc files to '/etc' directory!\n" 1>&2; exit 1; }
 
 # Generate the locales
 locale-gen
-
-# Generate initramfs
-/usr/lib/booster/regenerate_images
-
-# Configure the bootloader
-./boot/grub-configure.sh
-grub-install --target='x86_64-efi' --efi-directory='/boot' --bootloader-id='GRUB'
 
 # Add user to some groups
 usermod -a -G audio,video,uucp,disk,libvirt "$username"
@@ -112,8 +96,8 @@ usermod -a -G audio,video,uucp,disk,libvirt "$username"
 usermod -s /bin/zsh "$username"
 
 # Rootless containers
-touch /etc/subuid /etc/subgid
-usermod --add-subuids 100000-165535 --add-subgids 100000-165535 "$username"
+#touch /etc/subuid /etc/subgid
+#usermod --add-subuids 100000-165535 --add-subgids 100000-165535 "$username"
 
 # Enable apparmor service
 systemctl enable apparmor.service
@@ -128,21 +112,16 @@ systemctl enable bluetooth.service
 systemctl enable tlp.service
 
 # Enable networking
+systemctl enable systemd-resolved.service
+systemctl enable systemd-networkd.service
+systemctl disable systemd-networkd-wait-online.service
 systemctl enable iwd.service
-systemctl enable dhcpcd.service
 
 # Enable SSH
 systemctl enable sshd.service
 
 # Enable firewall
-systemctl enable firewall.service
-systemctl enable update-nft-bogons.timer
-
-# Enable sshguard
-systemctl enable sshguard.service
-
-# Scheduler
-systemctl enable atd.service
+systemctl enable nftables.service
 
 # Enable libvirt service
 systemctl enable libvirtd.service
