@@ -23,7 +23,7 @@ id -u "$username" >/dev/null 2>&1 || \
 	{ printf 'Root Password\n'; passwd -q; }
 
 step=1
-while true; do clear
+while [ "$step" -gt 0 ]; do clear
 	# Check internet connection
 	while ! ping -c 1 archlinux.org >/dev/null 2>&1; do
 		printf 'No internet connection!\n'
@@ -75,7 +75,7 @@ while true; do clear
 			{ [ "$ans" = 'Y' ] || [ "$ans" = 'y' ] || [ -z "$ans" ]; } && \
 				su --login "$username" -c "$(pwd)/dotfiles-install.sh"
 			;;
-		*) break ;;
+		*) step=-1 ;;
 	esac
 
 	printf "Press [Enter] to continue (enter 'q' to quit): "
