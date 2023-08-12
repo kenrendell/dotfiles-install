@@ -1,13 +1,13 @@
 #!/bin/sh
 # Update pacman mirrorlist
 
-[ "$#" -eq 0 ] || { printf 'Usage: update_mirrorlist.sh\n'; exit 1; }
+[ "$#" -eq 0 ] || { printf 'Usage: update-mirrorlist.sh\n'; exit 1; }
 
 [ "$(whoami)" = 'root' ] || \
 	{ printf 'Root permission is needed!\n'; exit 1; }
 
 # Check internet connection
-ping -c 2 archlinux.org >/dev/null 2>&1 || \
+ping -c 1 archlinux.org >/dev/null 2>&1 || \
 	{ printf 'No internet connection!\n'; exit 1; }
 
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak

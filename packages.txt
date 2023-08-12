@@ -14,6 +14,8 @@
 * moreutils
 * archlinux-keyring
 * pacman-contrib
+* sudo
+* vi
 
 # UEFI
 * efivar
@@ -35,8 +37,6 @@
 * linux-firmware
 * alsa-firmware
 * sof-firmware
-* intel-ucode
-* amd-ucode
 
 # Desktop specifications and helpers
 * desktop-file-utils
@@ -125,10 +125,7 @@
 * podman
 * buildah
 * qemu-full
-* libvirt
-* virt-manager
-* virt-viewer
-* dmidecode
+#@ quickemu
 
 # Bluetooth
 * bluez
@@ -138,6 +135,7 @@
 * wireplumber
 * pipewire
 * pipewire-pulse
+* pipewire-audio
 * pipewire-alsa
 * pipewire-jack
 * gst-plugin-pipewire
@@ -171,6 +169,7 @@
 * inotify-tools
 * gvfs-mtp
 * evtest
+* dmidecode
 @ wev
 
 # Version Control System
@@ -294,12 +293,13 @@
 * hexyl
 * pastel
 
-# Backup
+# Files
 * rsync
 * unison
 * rclone
 * restic
 * syncthing
+* samba
 
 # Filesystem
 @ autofs
@@ -371,6 +371,7 @@
 # Electronics
 * ngspice
 @ xcircuit
+#@ circuitjs-bin
 #* kicad
 #* kicad-library
 #* kicad-library-3d

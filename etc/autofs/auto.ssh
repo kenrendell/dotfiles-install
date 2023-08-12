@@ -1,0 +1,14 @@
+# Remote SSH (SFTP)
+# Dependencies: sshfs
+
+# To access files in Android:
+# - Install 'sshelper' in Android (https://arachnoid.com/android/SSHelper/)
+# - Generate SSH key (without passphrase):
+#   # ssh-keygen -t ed25519
+# - Copy SSH public key to the 'sshelper' home directory:
+#   # SSHELPER_HOME='/data/data/com.arachnoid.sshelper/home'
+#   # scp -P 2222 /root/.ssh/id_ed25519.pub root@<host>:${SSHELPER_HOME}/.ssh/authorized_keys
+# - Disable password logins in 'sshelper' and restart 'sshelper'.
+#
+# NOTE: Make sure that 'user_allow_other' option is present (not commented) in '/etc/fuse.conf'.
+#<name> -fstype=fuse.sshfs,rw,allow_other,ConnectTimeout=10,ServerAliveInterval=15,ServerAliveCountMax=3,port=2222 root@<host>:/data/data/com.arachnoid.sshelper/home/SDCard/

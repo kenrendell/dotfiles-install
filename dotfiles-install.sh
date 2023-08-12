@@ -10,9 +10,11 @@ rm -rf "$HOME/.dotfiles"
 git clone --bare 'https://github.com/kenrendell/dotfiles.git' "$HOME/.dotfiles" || \
 	{ printf 'Failed to download dotfiles!\n'; exit 1; }
 
-alias dotfiles="git --git-dir='$HOME/.dotfiles' --work-tree='$HOME'"
-dotfiles config status.showUntrackedFiles no
-dotfiles checkout >/dev/null 2>&1 || {
-	dotfiles checkout 2>&1 | sed -E -n "s/^[[:space:]]+(.+)[[:space:]]*\$/'\1'/p" | xargs rm -rf
-	dotfiles checkout
+export GIT_DIR="${HOME}/.dotfiles"
+export GIT_WORK_TREE="$HOME"
+
+git config status.showUntrackedFiles no
+git checkout >/dev/null 2>&1 || {
+	git checkout 2>&1 | sed -E -n "s/^[[:space:]]+(.+)[[:space:]]*\$/'\1'/p" | xargs rm -rf
+	git checkout
 }

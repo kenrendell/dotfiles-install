@@ -1,0 +1,11 @@
+# Removable media
+# Note: Use UUID=<UUID> instead of /dev/<device><partition>
+#
+# To find the UUID of the device:
+# run 'blkid --match-tag UUID --output value /dev/<device><partition>'
+#
+#<name> -fstype=auto :UUID=<UUID>
+#<name> -fstype=nilfs2,nogc :UUID=<UUID>
+#<name> -fstype=vfat,dmask=000,fmask=111 :UUID=<UUID>
+#<name> -fstype=exfat,dmask=000,fmask=111 :UUID=<UUID>
+00-backup -fstype=ext4,rw,relatime :LABEL=00-backup
