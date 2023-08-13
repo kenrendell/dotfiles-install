@@ -13,7 +13,7 @@ ping -c 1 archlinux.org >/dev/null 2>&1 || \
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 
 # Get the latest pacman mirrorlist
-reflector --protocol https --latest 5 --sort age --save /etc/pacman.d/mirrorlist
+reflector --protocol https --latest 5 --sort age --save /etc/pacman.d/mirrorlist || exit 1
 
 # Enter `:n' and `:p' in `less' to search
 # for next and previous file, respectively.
