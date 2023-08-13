@@ -1,4 +1,4 @@
-# Installation scripts for my [dotfiles](https://github.com/kenrendell/dotfiles)
+# Installation scripts for my [Dotfiles](https://github.com/kenrendell/dotfiles)
 
 ## Installation
 
@@ -12,7 +12,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 ```
 
-### Install dotfiles
+### Install Dotfiles
 
 Prerequisites:
 
