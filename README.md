@@ -16,7 +16,7 @@ arch-chroot /mnt
 
 Prerequisites:
 
-* Arch Linux is booted in UEFI mode. Run `cat /sys/firmware/efi/fw_platform_size` and if the file exists, then the system is booted in UEFI mode. See [UEFI](https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface#From_Linux).
+* Arch Linux is booted in UEFI mode. Run `cat /sys/firmware/efi/fw_platform_size` and if the file exists, then the system is booted in UEFI mode. See [Linux UEFI](https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface#From_Linux).
 * Secure boot is disabled and is in setup mode. Run `sbctl status` to check the secure boot status.
 * EFI partition is mounted in `/efi` directory. See [EFI partition](https://wiki.archlinux.org/title/EFI_system_partition#Typical_mount_points).
 * The root and swap partition must be labeled "SYSTEM" and "SWAP", respectively.
@@ -32,4 +32,5 @@ After successfully creating [unified kernel images](https://wiki.archlinux.org/t
 
 ``` sh
 efibootmgr --create --disk /dev/sdX --part partition-number --label "Arch Linux" --loader 'EFI\Linux\linux.efi' --unicode
+efibootmgr --create --disk /dev/sdX --part partition-number --label "Arch Linux (LTS)" --loader 'EFI\Linux\linux-lts.efi' --unicode
 ```
