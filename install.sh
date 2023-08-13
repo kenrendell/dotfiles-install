@@ -92,6 +92,10 @@ done; clear
 # Set user shell
 usermod -s /bin/zsh "$username" || exit 1
 
+# Rootless containers
+touch /etc/subuid /etc/subgid
+usermod --add-subuids 100000-165535 --add-subgids 100000-165535 "$username" || exit 1
+
 # Copy files to their respective directories
 cp -R ./etc/ / || exit 1
 cp -R ./bin/ /usr/local/ || exit 1
@@ -102,10 +106,6 @@ cp -R ./bin/ /usr/local/ || exit 1
 # Generate the locales
 locale-gen || exit 1
 
-# Hostname
-printf 'Hostname: '; read -r hostname || exit 1
-printf '%s\n' "$hostname" > /etc/hostname
-
 # Enable networking
 systemctl enable systemd-resolved.service
 systemctl enable systemd-networkd.service
@@ -114,13 +114,6 @@ systemctl enable iwd.service
 
 # Enable firewall
 systemctl enable nftables.service
-
-# Rootless containers
-#touch /etc/subuid /etc/subgid
-#usermod --add-subuids 100000-165535 --add-subgids 100000-165535 "$username"
-
-# Enable podman service
-systemctl enable podman.service
 
 # Enable apparmor service
 systemctl enable apparmor.service

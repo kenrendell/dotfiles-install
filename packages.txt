@@ -124,8 +124,10 @@
 # Container
 * podman
 * buildah
+* slirp4netns
+* fuse-overlayfs
 * qemu-full
-#@ quickemu
+@ quickemu
 
 # Bluetooth
 * bluez

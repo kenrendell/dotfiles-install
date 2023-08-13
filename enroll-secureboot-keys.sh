@@ -1,5 +1,5 @@
 #!/bin/sh
-# Enroll secure boot keys
+# Enroll secure boot keys and create UEFI executables
 # Usage: enroll-secureboot-keys.sh
 
 [ "$(whoami)" = 'root' ] || { printf 'Root permission is needed!\n'; exit 1; }
