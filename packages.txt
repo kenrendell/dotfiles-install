@@ -278,6 +278,8 @@
 * neomutt
 * s-nail
 * libnotify
+* liferea
+#* newsflash
 
 # Productivity
 * task
