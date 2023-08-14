@@ -4,6 +4,8 @@
 
 [ "$(whoami)" = 'root' ] || { printf 'Root permission is needed!\n'; exit 1; }
 
+cd "${0%/*}" || exit 1
+
 secure_boot_status="$(sbctl status --json)" || exit 1
 
 printf '%s\n' "$secure_boot_status" | jq -e '.secure_boot == false' >/dev/null || \
