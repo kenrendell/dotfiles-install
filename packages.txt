@@ -16,6 +16,7 @@
 * pacman-contrib
 * sudo
 * vi
+* nix
 
 # UEFI
 * efivar
@@ -172,6 +173,7 @@
 * gvfs-mtp
 * evtest
 * dmidecode
+* trash-cli
 @ wev
 
 # Version Control System
@@ -256,6 +258,7 @@
 * man-pages
 * texinfo
 * tealdeer
+* qpdf
 * zathura
 * zathura-pdf-mupdf
 * zathura-djvu
@@ -264,7 +267,6 @@
 * groff
 * zk
 * libreoffice-fresh
-* obsidian
 * texlive-bin
 * tectonic
 * pandoc

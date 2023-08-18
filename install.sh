@@ -11,8 +11,7 @@ cd "${0%/*}" || exit 1
 username="$1"
 
 # Configure user
-id -u "$username" >/dev/null 2>&1 || \
-	{ useradd -m -G wheel,audio,video,uucp,disk "$username" || exit 1; }
+id -u "$username" >/dev/null 2>&1 || { useradd -m "$username" || exit 1; }
 
 # Configure user password
 [ "$(passwd -S "$username" | cut -d ' ' -f 2)" != 'P' ] && \
@@ -81,6 +80,14 @@ while [ "$step" -gt 0 ]; do clear
 			{ [ "$ans" = 'Y' ] || [ "$ans" = 'y' ] || [ -z "$ans" ]; } && \
 				su --login "$username" -c "$(pwd)/dotfiles-install.sh"
 			;;
+		10) # Configure Nix package manager
+			usermod -a -G nix-users "$username" || exit 1
+			{ nix-channel --add https://nixos.org/channels/nixpkgs-unstable && nix-channel --update; } || exit 1
+			;;
+		11) # Install Emanote web server
+			nix profile install --experimental-features "nix-command flakes" github:srid/emanote || \
+				{ printf 'Failed to install Emanote web server!\n'; exit 1; }
+			;;
 		*) step=-1 ;;
 	esac
 
@@ -91,6 +98,9 @@ done; clear
 
 # Set user shell
 usermod -s /bin/zsh "$username" || exit 1
+
+# Configure user groups
+useradd -a -G wheel,audio,video,uucp,disk "$username" || exit 1
 
 # Rootless containers
 touch /etc/subuid /etc/subgid
@@ -134,12 +144,18 @@ systemctl --user --machine="${username}"'@.host' enable mpd.service
 # Enable Syncthing
 systemctl --user --machine="${username}"'@.host' enable syncthing.service
 
+# Enable Emanote
+systemctl --user --machine="${username}"'@.host' enable emanote.service
+
 # Enable audio
 systemctl --user --machine="${username}"'@.host' enable pipewire.service
 systemctl --user --machine="${username}"'@.host' enable wireplumber.service
 
 # Enable automount
 systemctl enable autofs.service
+
+# Enable nix
+systemctl enable nix-daemon.service
 
 # Enroll secure boot keys and create UEFI executables
 ./enroll-secureboot-keys.sh
