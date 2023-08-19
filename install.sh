@@ -78,14 +78,14 @@ while [ "$step" -gt 0 ]; do clear
 		9) # Install dotfiles
 			printf 'Install dotfiles? [Y/n]: '; read -r ans
 			{ [ "$ans" = 'Y' ] || [ "$ans" = 'y' ] || [ -z "$ans" ]; } && \
-				su --login "$username" -c "$(pwd)/dotfiles-install.sh"
+				{ su --login "$username" -c "$(pwd)/dotfiles-install.sh" || exit 1; }
 			;;
 		10) # Configure Nix package manager
 			usermod -a -G nix-users "$username" || exit 1
-			{ nix-channel --add https://nixos.org/channels/nixpkgs-unstable && nix-channel --update; } || exit 1
+			su --pty --login "$username" -c 'nix-channel --add https://nixos.org/channels/nixpkgs-unstable && nix-channel --update' || exit 1
 			;;
 		11) # Install Emanote web server
-			nix profile install --experimental-features "nix-command flakes" github:srid/emanote || \
+			su --pty --login "$username" -c 'nix profile install github:srid/emanote' || \
 				{ printf 'Failed to install Emanote web server!\n'; exit 1; }
 			;;
 		*) step=-1 ;;

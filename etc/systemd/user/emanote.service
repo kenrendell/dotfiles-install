@@ -4,7 +4,7 @@ Description=Emanote web server
 PartOf=graphical-session.target
 
 [Service]
-ExecStart="%h/.nix-profile/bin/emanote" \
+ExecStart="%S/nix/profile/bin/emanote" \
 	--layers "%h/Documents/Notes" \
 	run --host 127.0.0.1 --port 9000
 
