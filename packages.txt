@@ -263,7 +263,6 @@
 * zathura-pdf-mupdf
 * zathura-djvu
 * zathura-ps
-#@ sioyek-appimage
 * groff
 * zk
 * libreoffice-fresh
@@ -288,10 +287,7 @@
 @ anki-bin
 
 # Chat
-* weechat
-@ weechat-matrix-rs-git
-@ bitlbee
-#* caprine
+#* weechat
 #@ dendrite
 #@ syphon-bin
 
@@ -376,7 +372,7 @@
 
 # Electronics
 * ngspice
-@ xcircuit
+#@ xcircuit
 #@ circuitjs-bin
 #* kicad
 #* kicad-library
