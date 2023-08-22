@@ -266,7 +266,6 @@
 * groff
 * zk
 * libreoffice-fresh
-* texlive-bin
 * tectonic
 * pandoc
 
