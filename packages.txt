@@ -252,6 +252,7 @@
 * imagemagick
 * qrencode
 * zbar
+* inkscape
 
 # Documents
 * man-db
