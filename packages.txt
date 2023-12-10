@@ -393,6 +393,12 @@
 * arduino-cli
 * arduino-avr-core
 * esptool
+@ serialplot-hg
+
+# FPGA
+* iverilog
+* verilator
+* vtr
 
 # Internet Browser
 * lynx
@@ -409,7 +415,14 @@
 #@ tuneit
 #@ lingot
 #@ nootka
+#@ waon
+#@ tony
+#* timidity++
+#* fluidsynth
 
 # Video/Audio Editing
 #* audacity
 #* shotcut
+
+# Others
+#@ exercism-bin
