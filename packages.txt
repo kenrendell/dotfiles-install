@@ -102,9 +102,17 @@
 * tcpdump
 * termshark
 * wireshark-cli
+* wireshark-qt
 * dhcping
 * iwd
 * dnsmasq
+@ ubridge
+
+# Network emulation/simulation
+@ gns3-server
+@ gns3-gui
+@ vpcs
+@ dynamips
 
 # Security
 * oath-toolkit
@@ -129,6 +137,8 @@
 * fuse-overlayfs
 * qemu-full
 @ quickemu
+* docker
+* libvirt
 
 # Bluetooth
 * bluez
@@ -346,6 +356,9 @@
 # Crytocurrency
 @ cointop
 
+# IPFS
+* kubo
+
 # Appearance
 * qt5ct
 * qt6ct
@@ -368,8 +381,11 @@
 #* rink
 #* units
 * octave
+#@ octave-control
 #@ octave-signal
 #@ octave-image
+#@ octave-instrument-control
+#@ octave-arduino
 
 # Electronics
 * ngspice
@@ -380,8 +396,17 @@
 #* kicad-library-3d
 #@ fritzing
 
+# CAD
+#* freecad
+#* librecad
+#@ libredwg-git
+#@ oda-file-converter
+
 # Clang Tooling
 * bear
+
+# Assembler
+* nasm
 
 # Embedded Systems
 * arm-none-eabi-gcc

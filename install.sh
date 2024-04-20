@@ -80,11 +80,6 @@ while [ "$step" -gt 0 ]; do clear
 			{ [ "$ans" = 'Y' ] || [ "$ans" = 'y' ] || [ -z "$ans" ]; } && \
 				{ su --login "$username" -c "$(pwd)/dotfiles-install.sh" || exit 1; }
 			;;
-		10) # Install Emanote web server with Nix
-			usermod -a -G nix-users "$username" || exit 1
-			su --pty --login "$username" -c 'nix profile install github:srid/emanote' || \
-				{ printf 'Failed to install Emanote web server!\n'; exit 1; }
-			;;
 		*) step=-1 ;;
 	esac
 
@@ -141,9 +136,6 @@ systemctl --user --machine="${username}"'@.host' enable mpd.service
 # Enable Syncthing
 systemctl --user --machine="${username}"'@.host' enable syncthing.service
 
-# Enable Emanote
-systemctl --user --machine="${username}"'@.host' enable emanote.service
-
 # Enable audio
 systemctl --user --machine="${username}"'@.host' enable pipewire.service
 systemctl --user --machine="${username}"'@.host' enable wireplumber.service
@@ -153,6 +145,13 @@ systemctl enable autofs.service
 
 # Enable nix
 systemctl enable nix-daemon.service
+
+# Enable IPFS
+systemctl --user --machine="${username}"'@.host' enable ipfs.service
+
+# Enable GNS3 server
+systemctl enable gns3-server@kenrendell.service
+systemctl enable libvirtd.service
 
 # Enroll secure boot keys and create UEFI executables
 ./enroll-secureboot-keys.sh
