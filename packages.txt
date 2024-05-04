@@ -262,7 +262,11 @@
 * imagemagick
 * qrencode
 * zbar
+
+# Drawing Tools
 * inkscape
+@ ipe
+#@ xcircuit
 
 # Documents
 * man-db
@@ -278,6 +282,7 @@
 * zk
 * libreoffice-fresh
 * tectonic
+* texlive-basic
 * pandoc
 * graphviz
 
@@ -389,7 +394,6 @@
 
 # Electronics
 * ngspice
-#@ xcircuit
 #@ circuitjs-bin
 #* kicad
 #* kicad-library
@@ -397,6 +401,7 @@
 #@ fritzing
 
 # CAD
+#* openscad
 #* freecad
 #* librecad
 #@ libredwg-git
@@ -423,6 +428,7 @@
 # FPGA
 * iverilog
 * verilator
+* yosys
 * vtr
 
 # Internet Browser
