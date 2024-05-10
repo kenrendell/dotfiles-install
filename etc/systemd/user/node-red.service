@@ -1,0 +1,10 @@
+[Unit]
+After=graphical-session.target
+Description=Node-RED server
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/node-red --port 1880
+
+[Install]
+WantedBy=graphical-session.target
