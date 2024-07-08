@@ -78,6 +78,7 @@
 * acpi
 * tmon
 * lm_sensors
+* turbostat
 
 # Server
 #* ddclient
@@ -376,6 +377,8 @@
 # Fonts
 * ttf-jetbrains-mono
 * ttf-opensans
+* ttf-nerd-fonts-symbols
+* ttf-nerd-fonts-symbols-mono
 * otf-font-awesome
 * noto-fonts-emoji
 * terminus-font
@@ -434,6 +437,11 @@
 * verilator
 * yosys
 * vtr
+* gtkwave
+@ verible-git
+@ nextpnr-git
+@ prjapicula
+@ oss-cad-suite-build-bin
 
 # Internet Browser
 * lynx
@@ -441,6 +449,14 @@
 * torbrowser-launcher
 * tor
 * nyx
+
+# AI Assistant
+#@ chatgpt-desktop-bin
+#@ noi-desktop-bin
+
+# Email Client
+* thunderbird
+@ betterbird-bin
 
 # Musical Instrument
 #* guitarix
