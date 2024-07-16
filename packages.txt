@@ -116,6 +116,7 @@
 @ dynamips
 
 # Security
+* keepassxc
 * oath-toolkit
 * age
 * cracklib
@@ -372,6 +373,10 @@
 * adwaita-qt6
 * papirus-icon-theme
 * capitaine-cursors
+* arc-gtk-theme
+* kvantum
+* kvantum-qt5
+@ kvantum-theme-arc
 
 # Fonts
 * ttf-jetbrains-mono
