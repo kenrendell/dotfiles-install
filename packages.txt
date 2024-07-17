@@ -48,6 +48,7 @@
 # Wayland
 * xorg-xwayland
 * sway
+* swaync
 * swayidle
 * swaylock
 * swaybg
@@ -368,6 +369,7 @@
 # Appearance
 * qt5ct
 * qt6ct
+* nwg-look
 * gnome-themes-extra
 * adwaita-qt5
 * adwaita-qt6
