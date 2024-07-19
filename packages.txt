@@ -63,7 +63,6 @@
 # Wayland utilities
 * foot
 * foot-terminfo
-* fnott
 * waybar
 * light
 * playerctl
@@ -107,6 +106,7 @@
 * wireshark-qt
 * dhcping
 * iwd
+@ iwgtk
 * dnsmasq
 @ ubridge
 
@@ -146,6 +146,7 @@
 # Bluetooth
 * bluez
 * bluez-utils
+* blueman
 
 # Audio
 * wireplumber
@@ -255,6 +256,7 @@
 * wf-recorder
 * yt-dlp
 * v4l-utils
+* kooha
 
 # Images
 * imv
