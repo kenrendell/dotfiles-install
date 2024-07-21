@@ -137,6 +137,7 @@ systemctl enable sshd.service
 # Enable music player daemon (MPD)
 su --login "$username" -c 'mkdir -p ~/.local/share/mpd/playlists'
 systemctl --user --machine="${username}"'@.host' enable mpd.service
+systemctl --user --machine="${username}"'@.host' enable mpd-mpris.service # MPRIS protocol
 
 # Enable Syncthing
 systemctl --user --machine="${username}"'@.host' enable syncthing.service

@@ -64,11 +64,10 @@
 * foot
 * foot-terminfo
 * waybar
-* light
+* brightnessctl
+* wlsunset
 * playerctl
-* bemenu
-* bemenu-wayland
-* bemenu-ncurses
+* fuzzel
 
 # Power management
 * tlp
@@ -247,7 +246,9 @@
 
 # Audio/Video
 * mpv
+* mpv-mpris
 * mpd
+@ mpd-mpris
 * mpc
 * motion
 * sox
