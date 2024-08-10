@@ -189,7 +189,7 @@
 * evtest
 * dmidecode
 * trash-cli
-@ wev
+* wev
 
 # Version Control System
 * git
@@ -207,7 +207,6 @@
 * bandwhich
 
 # Shell
-@ yash
 * zsh
 
 # Rust
@@ -271,11 +270,6 @@
 * imagemagick
 * qrencode
 * zbar
-
-# Drawing Tools
-* inkscape
-@ ipe
-#@ xcircuit
 
 # Documents
 * man-db
@@ -369,9 +363,6 @@
 * iperf
 * fio
 
-# Crytocurrency
-@ cointop
-
 # IPFS
 * kubo
 
@@ -401,14 +392,8 @@
 
 # Numerical Computation
 * bc
-#* rink
-#* units
-* octave
-#@ octave-control
-#@ octave-signal
-#@ octave-image
-#@ octave-instrument-control
-#@ octave-arduino
+* rink
+* units
 
 # Electronics
 @ circuitjs-bin
@@ -436,20 +421,9 @@
 * esptool
 @ serialplot-hg
 
-# IoT
-* mqttui
-@ nodejs-node-red
-
 # FPGA
-* iverilog
-* verilator
-* yosys
 * vtr
-* gtkwave
-@ verible-git
-@ nextpnr-git
 @ prjapicula
-@ oss-cad-suite-build-bin
 
 # Internet Browser
 * lynx
@@ -457,31 +431,3 @@
 * torbrowser-launcher
 * tor
 * nyx
-
-# AI Assistant
-#@ chatgpt-desktop-bin
-#@ noi-desktop-bin
-
-# Email Client
-* thunderbird
-@ betterbird-bin
-
-# Musical Instrument
-#* guitarix
-#* musescore
-#@ tuxguitar
-#@ bashtuner
-#@ tuneit
-#@ lingot
-#@ nootka
-#@ waon
-#@ tony
-#* timidity++
-#* fluidsynth
-
-# Video/Audio Editing
-#* audacity
-#* shotcut
-
-# Others
-#@ exercism-bin

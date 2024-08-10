@@ -80,10 +80,13 @@ while [ "$step" -gt 0 ]; do clear
 			{ [ "$ans" = 'Y' ] || [ "$ans" = 'y' ] || [ -z "$ans" ]; } && \
 				{ su --login "$username" -c "$(pwd)/dotfiles-install.sh" || exit 1; }
 			;;
-		10) # Install Emanote web server with Nix
+		10) # Build and install nix packages
 			usermod -a -G nix-users "$username" || exit 1
-			su --pty --login "$username" -c 'nix profile install github:srid/emanote' || \
-				{ printf 'Failed to install Emanote web server!\n'; exit 1; }
+			usermod -s /bin/zsh "$username" || exit 1 # Set user shell
+
+			export NIXPKGS_ALLOW_UNFREE=1 # Allow non-free nix packages
+			su --pty --login "$username" -c 'nix run --impure "${XDG_CONFIG_HOME}/nix/pkgs#profile.switch"' || \
+				{ printf 'Failed to install nix packages!\n'; exit 1; }
 			;;
 		*) step=-1 ;;
 	esac
@@ -92,9 +95,6 @@ while [ "$step" -gt 0 ]; do clear
 	read -r input; [ "$input" = 'q' ] && exit 1
 	step=$((step + 1))
 done; clear
-
-# Set user shell
-usermod -s /bin/zsh "$username" || exit 1
 
 # Configure user groups
 useradd -a -G wheel,audio,video,uucp,disk "$username" || exit 1
