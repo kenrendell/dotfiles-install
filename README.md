@@ -12,6 +12,13 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 ```
 
+#### Nix Storage Optimization
+
+* The `/nix/store` can grow significantly, as it holds all the Nix packages and their dependencies. If the `/nix/store` is on the root partition and it becomes too large, it could potentially exhaust the available space, causing system issues. Therefore, it's recommended to create a separate partition for `/nix`.
+* Using `/nix` for building Nix packages rather than `/tmp` can help avoid running out of space, especially if `/tmp` is mounted as a tmpfs (which is often backed by RAM and swap). Since the size of `/tmp` is typically limited to a fraction of your RAM, large builds can easily exhaust this space, leading to build failures. To achieve this, set `build-dir = /nix` in `nix.conf` or set the environment variable `TMPDIR` to `/nix`.
+
+For more info, see [storage optimization](https://nixos.wiki/wiki/Storage_optimization).
+
 ### Install Dotfiles
 
 Prerequisites:

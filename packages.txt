@@ -157,6 +157,7 @@
 * gst-plugin-pipewire
 
 # Command-line utilities
+* direnv
 * picocom
 * abduco
 * neovim
@@ -171,6 +172,7 @@
 * fzf
 * sd
 * jq
+* pv
 * jless
 * fd
 * duf
@@ -258,6 +260,8 @@
 * yt-dlp
 * v4l-utils
 * kooha
+* audacious
+* playerctl
 
 # Images
 * imv
@@ -290,6 +294,8 @@
 * texlive-basic
 * pandoc
 * graphviz
+* thunar
+* thunar-volman
 
 # Language
 * translate-shell
@@ -405,19 +411,12 @@
 #@ octave-arduino
 
 # Electronics
-* ngspice
-#@ circuitjs-bin
-#* kicad
-#* kicad-library
-#* kicad-library-3d
-#@ fritzing
+@ circuitjs-bin
 
 # CAD
 #* openscad
 #* freecad
 #* librecad
-#@ libredwg-git
-#@ oda-file-converter
 
 # Clang Tooling
 * bear
