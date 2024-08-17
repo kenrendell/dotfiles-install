@@ -17,6 +17,7 @@
 * sudo
 * vi
 * nix
+@ spack
 
 # UEFI
 * efivar
@@ -161,6 +162,7 @@
 * picocom
 * abduco
 * neovim
+* tree-sitter-cli
 * ripgrep
 * git-delta
 * parallel
