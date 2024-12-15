@@ -110,6 +110,9 @@
 * dnsmasq
 @ ubridge
 
+# Virtual Network
+* tigervnc
+
 # Network emulation/simulation
 @ gns3-server
 @ gns3-gui
@@ -298,12 +301,9 @@
 * dictd
 
 # Notify
-* newsboat
 * neomutt
 * s-nail
 * libnotify
-* liferea
-#* newsflash
 
 # Productivity
 * task
@@ -433,3 +433,4 @@
 * torbrowser-launcher
 * tor
 * nyx
+* thunderbird
