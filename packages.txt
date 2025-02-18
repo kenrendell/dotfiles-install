@@ -106,6 +106,7 @@
 * wireshark-qt
 * dhcping
 * iwd
+* openresolv
 @ iwgtk
 * dnsmasq
 @ ubridge
