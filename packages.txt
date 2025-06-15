@@ -109,16 +109,16 @@
 * openresolv
 @ iwgtk
 * dnsmasq
-@ ubridge
+#@ ubridge
 
 # Virtual Network
 * tigervnc
 
 # Network emulation/simulation
-@ gns3-server
-@ gns3-gui
-@ vpcs
-@ dynamips
+#@ gns3-server
+#@ gns3-gui
+#@ vpcs
+#@ dynamips
 
 # Security
 * keepassxc
@@ -196,6 +196,7 @@
 * dmidecode
 * trash-cli
 * wev
+* aria2
 
 # Version Control System
 * git
@@ -227,6 +228,7 @@
 # Python
 * python
 * python-pip
+* uv
 
 # Lua
 * lua
@@ -293,6 +295,7 @@
 * tectonic
 * texlive-basic
 * pandoc
+* python-weasyprint
 * graphviz
 * thunar
 * thunar-volman
@@ -399,7 +402,7 @@
 * units
 
 # Electronics
-@ circuitjs-bin
+#@ circuitjs-bin
 
 # CAD
 #* openscad
@@ -435,3 +438,6 @@
 * tor
 * nyx
 * thunderbird
+
+# Remote Access Tools
+@ rustdesk-bin
