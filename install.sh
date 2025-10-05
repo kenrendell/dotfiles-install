@@ -97,7 +97,7 @@ while [ "$step" -gt 0 ]; do clear
 done; clear
 
 # For Kanata setup. See https://github.com/jtroo/kanata/blob/main/docs/setup-linux.md
-sudo groupadd --system uinput
+sudo groupadd --system uinput || exit 1
 
 # Configure user groups
 usermod -a -G wheel,audio,video,uucp,disk,input,uinput "$username" || exit 1
