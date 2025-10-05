@@ -96,8 +96,11 @@ while [ "$step" -gt 0 ]; do clear
 	step=$((step + 1))
 done; clear
 
+# For Kanata setup. See https://github.com/jtroo/kanata/blob/main/docs/setup-linux.md
+sudo groupadd --system uinput
+
 # Configure user groups
-useradd -a -G wheel,audio,video,uucp,disk "$username" || exit 1
+usermod -a -G wheel,audio,video,uucp,disk,input,uinput "$username" || exit 1
 
 # Rootless containers
 touch /etc/subuid /etc/subgid
@@ -112,6 +115,12 @@ cp -R ./bin/ /usr/local/ || exit 1
 
 # Generate the locales
 locale-gen || exit 1
+
+# Reload device rules and re-trigger all device events
+{ udevadm control --reload-rules && udevadm trigger; } || exit 1
+
+# Load uinput drivers for Kanata. See https://github.com/jtroo/kanata/blob/main/docs/setup-linux.md
+modprobe uinput || exit 1
 
 # Enable networking
 systemctl enable systemd-resolved.service
