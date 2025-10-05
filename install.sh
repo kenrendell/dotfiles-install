@@ -122,6 +122,9 @@ locale-gen || exit 1
 # Load uinput drivers for Kanata. See https://github.com/jtroo/kanata/blob/main/docs/setup-linux.md
 modprobe uinput || exit 1
 
+# Enable Kanata key remapper
+systemctl enable kanata.service
+
 # Enable networking
 systemctl enable systemd-resolved.service
 systemctl enable systemd-networkd.service
